@@ -4,8 +4,4 @@ require('config.autocmds')
 require('config.keymaps')
 
 -- load lazy
-require('config.lazy')
-
--- apply after lazy load
-
-require('config.lsp')
+require('core.lazy')
