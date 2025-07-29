@@ -19,91 +19,91 @@ return {
       function()
         require('fzf-lua').files()
       end,
-      desc = 'Find Files in project directory',
+      desc = 'find files in project directory',
     },
     {
       '<leader>fg',
       function()
         require('fzf-lua').live_grep()
       end,
-      desc = 'Find by grepping in project directory',
+      desc = 'find by grepping in project directory',
     },
     {
       '<leader>fc',
       function()
         require('fzf-lua').files({ cwd = vim.fn.stdpath('config') })
       end,
-      desc = 'Find in neovim configuration',
+      desc = 'find in neovim configuration',
     },
     {
       '<leader>fh',
       function()
         require('fzf-lua').helptags()
       end,
-      desc = '[F]ind [H]elp',
+      desc = 'find help',
     },
     {
       '<leader>fk',
       function()
         require('fzf-lua').keymaps()
       end,
-      desc = '[F]ind [K]eymaps',
+      desc = 'find keymaps',
     },
     {
       '<leader>fb',
       function()
         require('fzf-lua').builtin()
       end,
-      desc = '[F]ind [B]uiltin FZF',
+      desc = 'find builtin fzf',
     },
     {
       '<leader>fw',
       function()
         require('fzf-lua').grep_cword()
       end,
-      desc = '[F]ind current [W]ord',
+      desc = 'find current word',
     },
     {
       '<leader>fW',
       function()
         require('fzf-lua').grep_cWORD()
       end,
-      desc = '[F]ind current [W]ORD',
+      desc = 'find current WORD',
     },
     {
       '<leader>fd',
       function()
         require('fzf-lua').diagnostics_document()
       end,
-      desc = '[F]ind [D]iagnostics',
+      desc = 'find diagnostics',
     },
     {
       '<leader>fr',
       function()
         require('fzf-lua').resume()
       end,
-      desc = '[F]ind [R]esume',
+      desc = 'find resume',
     },
     {
       '<leader>fo',
       function()
         require('fzf-lua').oldfiles()
       end,
-      desc = '[F]ind [O]ld Files',
+      desc = 'find old files',
     },
     {
       '<leader><leader>',
       function()
         require('fzf-lua').buffers()
       end,
-      desc = '[,] Find existing buffers',
+      desc = ', find existing buffers',
     },
     {
       '<leader>/',
       function()
         require('fzf-lua').lgrep_curbuf()
       end,
-      desc = '[/] Live grep the current buffer',
+      desc = '/ live grep the current buffer',
     },
   },
 }
