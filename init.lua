@@ -5,3 +5,6 @@ require('config.keymaps')
 
 -- load lazy
 require('core.lazy')
+
+-- load lsp
+require('core.lsp')
