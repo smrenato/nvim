@@ -7,9 +7,9 @@ return {
   opts = {
     winopts = {
       preview = {
-        vertical = 'down:45%', -- up|down:siz
+        vertical = 'down:55%',    -- up|down:siz
         horizontal = 'right:60%', -- right|left:size
-        layout = 'horizontal', -- horizontal|vertical|flex}
+        layout = 'horizontal',    -- horizontal|vertical|flex}
       },
     },
   },

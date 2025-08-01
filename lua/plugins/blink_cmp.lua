@@ -7,6 +7,7 @@ return {
   ---@type blink.cmp.Config
   opts = {
     keymap = { preset = 'default' },
+
     appearance = {
       nerd_font_variant = 'mono',
     },
@@ -16,7 +17,11 @@ return {
     sources = {
       default = { 'lsp', 'path', 'snippets', 'buffer' },
     },
+
     fuzzy = { implementation = 'prefer_rust_with_warning' },
+
+    -- Experimental signature help support
+    signature = { enabled = true }
   },
   opts_extend = { 'sources.default' },
 }
