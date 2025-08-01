@@ -1,5 +1,14 @@
--- Open oil file explorer
-vim.keymap.set('n', '<leader>e', '<CMD>lua MiniFiles.open()<CR>', { desc = 'open file explorer' })
+-- helper funtion
+local function map(mode, keys, func, opts)
+  vim.keymap.set(mode, keys, func, opts)
+end
+
+map('n', '<leader>l', '<CMD>Lazy home<CR>', { desc = 'Open lazy' })
+map('n', '<leader>m', '<CMD>Mason<CR>', { desc = 'Open Mason' })
+-- Open mini files
+map('n', '<leader>e', function()
+  require('mini.files').open()
+end, { desc = 'open file explorer' })
 
 -- Clear hlsearch
 vim.keymap.set({ 'i', 'n', 's' }, '<esc>', function()
@@ -8,13 +17,11 @@ vim.keymap.set({ 'i', 'n', 's' }, '<esc>', function()
 end, { expr = true, desc = 'escape and clear hlsearch' })
 
 -- Toggle inlay hints
-
 vim.keymap.set('n', '<leader>ch', function()
   vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
 end, { desc = 'toggle inlay hints' })
 
 -- lsp keymap'
-
 vim.keymap.set('n', 'gra', vim.lsp.buf.code_action, { desc = 'lsp code actions' })
 
 vim.keymap.set('n', 'K', function()

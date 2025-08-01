@@ -5,59 +5,59 @@ vim.g.mapleader = ' '
 vim.g.maplocalleader = '\\'
 
 -- System clipboard
-vim.opt.clipboard = 'unnamedplus'
+vim.o.clipboard = 'unnamedplus'
 
 -- spelling checker
-vim.opt.spell = true
+vim.o.spell = true
 vim.opt.spelllang = { 'en' }
 
 -- Make all floating windows border rounded
 
-vim.opt.winborder = 'rounded'
+vim.o.winborder = 'rounded'
 
 -- tabs
-vim.opt.expandtab = true -- Convert tabs to spaces
-vim.opt.shiftwidth = 4 -- Amount to indent with << and >>
-vim.opt.tabstop = 4 -- How many spaces are shown per Tab
-vim.opt.softtabstop = 4 -- How many spaces are applied when pressing Tab
-vim.opt.smarttab = true
-vim.opt.smartindent = true
-vim.opt.autoindent = true -- Keep indentation from previous line
+vim.o.expandtab = true -- Convert tabs to spaces
+vim.o.shiftwidth = 4   -- Amount to indent with << and >>
+vim.o.tabstop = 4      -- How many spaces are shown per Tab
+vim.o.softtabstop = 4  -- How many spaces are applied when pressing Tab
+vim.o.smarttab = true
+vim.o.smartindent = true
+vim.o.autoindent = true -- Keep indentation from previous line
 
 -- Enable break indent
-vim.opt.breakindent = true
+vim.o.breakindent = true
 
 -- Always show relative line numbers
-vim.opt.number = true
-vim.opt.relativenumber = true
+vim.o.number = true
+vim.o.relativenumber = true
 
 -- Show line under cursor
-vim.opt.cursorline = true
+vim.o.cursorline = true
 
 -- Store undos between sessions
-vim.opt.undofile = true
+vim.o.undofile = true
 
 -- Enable mouse mode, can be useful for resizing splits for example!
-vim.opt.mouse = 'a'
+vim.o.mouse = 'a'
 
 -- Don't show the mode, since it's already in the status line
 -- vim.opt.showmode = false
 
 -- Case-insensitive searching UNLESS \C or one or more capital letters in the search term
-vim.opt.ignorecase = true
-vim.opt.smartcase = true
+vim.o.ignorecase = true
+vim.o.smartcase = true
 
 -- Keep signcolumn on by default
-vim.opt.signcolumn = 'yes'
+vim.o.signcolumn = 'yes'
 
 -- Configure how new splits should be opened
-vim.opt.splitright = true
-vim.opt.splitbelow = true
+vim.o.splitright = true
+vim.o.splitbelow = true
 
 -- Sets how neovim will display certain whitespace characters in the editor.
 --  See `:help 'list'`
 --  and `:help 'listchars'`
-vim.opt.list = true
+vim.o.list = true
 vim.opt.listchars = { tab = '» ', trail = '·', nbsp = '␣' }
 
-vim.opt.confirm = true
+vim.o.confirm = true

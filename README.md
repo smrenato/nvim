@@ -17,6 +17,7 @@ A custom Neovim configuration designed for [rust, python].
 - ripgrep
 - fzf
 - nerd font (recommended)
+- tree-sitter-cli (for tree-sitter)
 
 ## 🔧 Installation
 
@@ -29,19 +30,14 @@ A custom Neovim configuration designed for [rust, python].
     $ git clone https://github.com/smrenato/nvim.git ~/.config/nvim
 
 ```
-## ✅ lsps
-- [ ] python (ruff)
-- [ ] rust (rust-analyzer) 
-- [ ] lua (lua-ls)
-
 ## ✅ Installed plugins
 
 - [ ] lazy.vim package manager
-- [ ] kanagawa theme
-- [ ] blink.cmp faster auto completations
-- [ ] conform.nvim formatter
-- [ ] oil.nvim file manger
-- [ ] fzf-lua fuzzy finder
-- [ ] tree-sitter better text objects
-- [ ] mini.nvim for a lot of stuffs
-- [ ] mason pacakge manager for lsp, linters, dap
+- [X] kanagawa theme
+- [X] blink.cmp faster auto completations
+- [X] conform.nvim formatter
+- [X] fzf-lua fuzzy finder
+- [X] tree-sitter better text objects
+- [X] mini.nvim for a lot of stuffs
+- [X] mini.files file manger
+- [X] mason pacakge manager for lsp, linters, dap
