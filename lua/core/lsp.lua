@@ -59,6 +59,42 @@ vim.api.nvim_create_autocmd('LspAttach', {
 
         -- Unset 'omnifunc'
         vim.bo[args.buf].omnifunc = nil
+        local function map(mode, keys, func, opts)
+            vim.keymap.set(mode, keys, func, opts)
+        end
+
+        -- These GLOBAL keymaps are created unconditionally when Nvim starts:
+        -- - "gO" is mapped in Normal mode to |vim.lsp.buf.document_symbol()|
+        -- - CTRL-S is mapped in Insert mode to |vim.lsp.buf.signature_help()|
+
+        map('n', 'grn', vim.lsp.buf.rename, { desc = 'lsp rename' })
+        map(
+            'n',
+            'gO',
+            vim.lsp.buf.document_symbol,
+            { desc = 'lsp Document symbol' }
+        )
+        map('n', 'grD', vim.lsp.buf.declaration, { desc = 'lsp declaration' })
+        map('n', 'grd', vim.lsp.buf.definition, { desc = 'lsp definition' })
+        map(
+            { 'n', 'v' },
+            'gra',
+            vim.lsp.buf.code_action,
+            { desc = 'lsp code actions' }
+        )
+        map('n', 'grr', vim.lsp.buf.references, { desc = 'lsp references' })
+        map(
+            'n',
+            'gri',
+            vim.lsp.buf.implementation,
+            { desc = 'lsp implementation' }
+        )
+        map(
+            'n',
+            'grt',
+            vim.lsp.buf.type_definition,
+            { desc = 'lsk type definitions' }
+        )
     end,
 })
 

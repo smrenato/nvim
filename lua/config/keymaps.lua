@@ -1,11 +1,11 @@
 -- helper function
---@type
 local function map(mode, keys, func, opts)
     vim.keymap.set(mode, keys, func, opts)
 end
 
 map('n', '<leader>l', '<CMD>Lazy home<CR>', { desc = 'Open lazy' })
 map('n', '<leader>m', '<CMD>Mason<CR>', { desc = 'Open Mason' })
+
 -- Open mini files
 map('n', '<leader>e', function()
     require('mini.files').open()
@@ -18,17 +18,21 @@ map({ 'i', 'n', 's' }, '<esc>', function()
 end, { expr = true, desc = 'escape and clear hlsearch' })
 
 -- Toggle diagnostic
-
 map('n', '<leader>cd', function()
     vim.diagnostic.enable(not vim.diagnostic.is_enabled())
 end, { desc = 'Toggle diagnostics' })
+
+-- Open diagnostics float
+map('n', '<leader>cD', function()
+    vim.diagnostic.open_float()
+end, { desc = 'Open diagnostics float' })
 
 -- Toggle inlay hints
 map('n', '<leader>ch', function()
     vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
 end, { desc = 'toggle inlay hints' })
 
--- lsp keymap'
+-- lsp keymaps
 map('n', 'gra', vim.lsp.buf.code_action, { desc = 'lsp code actions' })
 
 map('n', 'K', function()
