@@ -2,7 +2,7 @@
 
 return {
     { 'echasnovski/mini.pairs', version = false, opts = {} },
-    { 'echasnovski/mini.animate', version = false, opts = {} },
+    { 'echasnovski/mini.animate', enabled = true, version = false, opts = {} },
 
     -- statusline
     {

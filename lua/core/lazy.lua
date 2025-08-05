@@ -32,13 +32,25 @@ require('lazy').setup({
         { import = 'plugins' },
     },
 
-    install = { colorscheme = { 'catppuccin-mocha' } },
+    install = {
+        colorscheme = { 'catppuccin-mocha' },
+
+        -- Do not automatically install on startup.
+        missing = false,
+    },
 
     -- automatically check for plugin updates
-    checker = { enabled = true },
+    checker = {
+        enabled = true,
+
+        -- but not notify
+        notify = true,
+        frequency = (3600 * 24) * 2, -- check for updates every 2 days
+    },
 
     ui = { border = 'rounded' },
     change_detection = { notify = false },
+
     performance = {
         rtp = {
             -- Stuff I don't use.

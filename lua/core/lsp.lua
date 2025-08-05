@@ -18,8 +18,8 @@ local hover = vim.lsp.buf.hover
 ---@diagnostic disable-next-line: duplicate-set-field
 vim.lsp.buf.hover = function()
     return hover({
-        max_height = math.floor(vim.o.lines * 0.5),
-        max_width = math.floor(vim.o.columns * 0.4),
+        max_height = math.floor(vim.o.lines * 0.6),
+        max_width = math.floor(vim.o.columns * 0.8),
     })
 end
 
@@ -62,10 +62,6 @@ vim.api.nvim_create_autocmd('LspAttach', {
         local function map(mode, keys, func, opts)
             vim.keymap.set(mode, keys, func, opts)
         end
-
-        -- These GLOBAL keymaps are created unconditionally when Nvim starts:
-        -- - "gO" is mapped in Normal mode to |vim.lsp.buf.document_symbol()|
-        -- - CTRL-S is mapped in Insert mode to |vim.lsp.buf.signature_help()|
 
         map('n', 'grn', vim.lsp.buf.rename, { desc = 'lsp rename' })
         map(
