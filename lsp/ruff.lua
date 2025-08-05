@@ -31,11 +31,26 @@ return {
     root_markers = { 'pyproject.toml', 'ruff.toml', '.ruff.toml', '.git' },
     settings = {
         init_options = {
+            logLevel = 'debug',
             settings = {
-
-                -- Server settings should go here
-            }
-        }
-
+                configurationPreference = 'filesystemFirst',
+                configuration = {
+                    lint = {
+                        unfixable = { 'F401' },
+                        ['extend-select'] = { 'TID251' },
+                        ['flake8-tidy-imports'] = {
+                            ['banned-api'] = {
+                                ['typing.TypedDict'] = {
+                                    msg = 'Use `typing_extensions.TypedDict` instead',
+                                },
+                            },
+                        },
+                    },
+                    format = {
+                        ['quote-style'] = 'single',
+                    },
+                },
+            },
+        },
     },
 }

@@ -7,6 +7,9 @@ vim.g.maplocalleader = '\\'
 -- System clipboard
 vim.o.clipboard = 'unnamedplus'
 
+-- use nerd fonts
+vim.g.have_nerd_font = true
+
 -- spelling checker
 vim.o.spell = true
 vim.opt.spelllang = { 'en' }
@@ -17,9 +20,9 @@ vim.o.winborder = 'rounded'
 
 -- tabs
 vim.o.expandtab = true -- Convert tabs to spaces
-vim.o.shiftwidth = 4   -- Amount to indent with << and >>
-vim.o.tabstop = 4      -- How many spaces are shown per Tab
-vim.o.softtabstop = 4  -- How many spaces are applied when pressing Tab
+vim.o.shiftwidth = 4 -- Amount to indent with << and >>
+vim.o.tabstop = 4 -- How many spaces are shown per Tab
+vim.o.softtabstop = 4 -- How many spaces are applied when pressing Tab
 vim.o.smarttab = true
 vim.o.smartindent = true
 vim.o.autoindent = true -- Keep indentation from previous line
