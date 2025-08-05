@@ -1,14 +1,14 @@
 -- Mini plugins that I find interesting
 
 return {
-    { 'echasnovski/mini.pairs',   version = false, opts = {} },
+    { 'echasnovski/mini.pairs', version = false, opts = {} },
     { 'echasnovski/mini.animate', version = false, opts = {} },
 
     -- statusline
     {
         'echasnovski/mini.statusline',
         version = false,
-        opts = {}
+        opts = {},
     },
     -- mini files
     {
@@ -24,29 +24,11 @@ return {
             },
         },
     },
+
+    -- using fidget instead
     {
         'echasnovski/mini.notify',
         version = false,
-        opts = {
-
-            lsp_progress = {
-                -- Whether to enable showing
-                enable = true,
-
-                -- Notification level
-                level = 'WARN',
-
-                -- Duration (in ms) of how long last message should be shown
-                duration_last = 1000,
-            },
-            window = {
-                -- Floating window config
-                config = {
-                    border = 'rounded'
-
-
-                },
-            }
-        }
+        enabled = false,
     },
 }
