@@ -14,6 +14,8 @@ return {
                 -- LSP servers (matching your vim.lsp.enable() config)
                 'lua-language-server', -- Lua LSP
                 'rust-analyzer', -- Rust LSP
+                'bash-language-server', -- Bash lsp
+                'clangd',
 
                 -- python
                 'ruff', -- Python LSP
@@ -22,6 +24,7 @@ return {
 
                 -- Formatters
                 'stylua',
+                'taplo',
 
                 -- Linters and diagnostics
                 'shfmt', -- Shell formatter
