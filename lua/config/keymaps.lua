@@ -7,8 +7,12 @@ map('n', '<leader>l', '<CMD>Lazy home<CR>', { desc = 'Open lazy' })
 map('n', '<leader>m', '<CMD>Mason<CR>', { desc = 'Open Mason' })
 
 -- Open mini files
+-- map('n', '<leader>e', function()
+--     require('mini.files').open()
+-- end, { desc = 'open file explorer' })
+
 map('n', '<leader>e', function()
-    require('mini.files').open()
+    require('oil').open_float()
 end, { desc = 'open file explorer' })
 
 -- Clear hlsearch
