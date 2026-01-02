@@ -9,6 +9,10 @@ cb = function(repo)
     return 'https://codeberg.org/' .. repo
 end
 
+map = function(mode, keys, func, opts)
+    vim.keymap.set(mode, keys, func, opts)
+end
+
 -- which pugins has to be activated
 require('plugins.blink_cmp')
 require('plugins.colorschemes')
