@@ -13,11 +13,8 @@ vim.pack.add({
 -- No setup is require
 lualine = require('lualine').setup({
     options = { theme = 'auto' },
-    sections = {
-        lualine_c = {
-            { 'filename', path = 1 }, -- 0 = filename, 1 = relative path, 2 = absolute path
-        },
-    },
+    sections = {},
+    disabled_buftypes = { 'oil' },
 })
 
 vim.o.cmdheight = 0

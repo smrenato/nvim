@@ -13,11 +13,17 @@ vim.pack.add({
 
 oil = require('oil').setup({
 
+    default_file_explorer = true,
+    skip_confirm_for_simple_edits = false,
+    columns = {
+        'icon',
+        -- 'permissions',
+        -- 'size',
+        -- "mtime",
+    },
+
     view_options = {
         show_hidden = true,
-        -- ensure numbers off in the oil buffer
-        relativenumber = false,
-        number = false,
     },
     float = {
         max_width = 0.60,
