@@ -1,8 +1,8 @@
 -- Seutp fzf-lua
 vim.pack.add({
-    { src = 'https://github.com/ibhagwan/fzf-lua', name = 'fzf-lua' },
+    { src = gh('ibhagwan/fzf-lua'), name = 'fzf-lua' },
     {
-        src = 'https://github.com/echasnovski/mini.icons',
+        src = gh('echasnovski/mini.icons'),
     },
 })
 
