@@ -1,11 +1,11 @@
 vim.pack.add({
     {
         src = 'https://github.com/Saghen/blink.cmp',
-        version = '1.*',
+        version = vim.version.range('1.*'),
     },
 })
 -- Plugin's code can be used directly after `add()`
-blink = require('blink.cmp').setup({
+local blink = require('blink.cmp').setup({
     keymap = { preset = 'default' },
 
     appearance = {

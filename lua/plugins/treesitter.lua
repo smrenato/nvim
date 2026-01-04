@@ -46,8 +46,7 @@ local parsers = {
 }
 
 -- Setup the treesitter
-treesitter = require('nvim-treesitter').setup({
-    -- Directory to install parsers and queries to (prepended to `runtimepath` to have priority)
+local treesitter = require('nvim-treesitter').setup({
     install_dir = vim.fn.stdpath('data') .. '/site',
 })
 
@@ -67,7 +66,7 @@ vim.api.nvim_create_autocmd('FileType', {
 })
 
 -- Configure textobjects
-textobjects = require('nvim-treesitter-textobjects').setup({
+local textobjects = require('nvim-treesitter-textobjects').setup({
     move = {
         set_jumps = true,
     },
@@ -82,8 +81,7 @@ textobjects = require('nvim-treesitter-textobjects').setup({
     },
 })
 
--- Add keymaps
-
+-- Surroundings
 map({ 'x', 'o' }, 'am', function()
     require('nvim-treesitter-textobjects.select').select_textobject(
         '@function.outer',
@@ -111,7 +109,6 @@ map({ 'x', 'o' }, 'ic', function()
     )
 end, {})
 
--- You can also use captures from other query groups like `locals.scm`
 map({ 'x', 'o' }, 'as', function()
     require('nvim-treesitter-textobjects.select').select_textobject(
         '@local.scope',
@@ -119,7 +116,7 @@ map({ 'x', 'o' }, 'as', function()
     )
 end, {})
 
--- keymaps
+-- Swaps
 map('n', '<leader>a', function()
     require('nvim-treesitter-textobjects.swap').swap_next('@parameter.inner')
 end, {})
@@ -129,30 +126,34 @@ map('n', '<leader>A', function()
     )
 end, {})
 
--- You can use the capture groups defined in `textobjects.scm`
+-- Moves
+
+-- functions
 map({ 'n', 'x', 'o' }, ']m', function()
     require('nvim-treesitter-textobjects.move').goto_next_start(
         '@function.outer',
         'textobjects'
     )
 end, {})
+
 map({ 'n', 'x', 'o' }, ']]', function()
     require('nvim-treesitter-textobjects.move').goto_next_start(
         '@class.outer',
         'textobjects'
     )
 end, {})
--- You can also pass a list to group multiple queries.
+
 map({ 'n', 'x', 'o' }, ']o', function()
     move.goto_next_start({ '@loop.inner', '@loop.outer' }, 'textobjects')
 end, {})
--- You can also use captures from other query groups like `locals.scm` or `folds.scm`
+
 map({ 'n', 'x', 'o' }, ']s', function()
     require('nvim-treesitter-textobjects.move').goto_next_start(
         '@local.scope',
         'locals'
     )
 end, {})
+
 map({ 'n', 'x', 'o' }, ']z', function()
     require('nvim-treesitter-textobjects.move').goto_next_start(
         '@fold',
@@ -192,6 +193,7 @@ map({ 'n', 'x', 'o' }, '[M', function()
         'textobjects'
     )
 end, {})
+
 map({ 'n', 'x', 'o' }, '[]', function()
     require('nvim-treesitter-textobjects.move').goto_previous_end(
         '@class.outer',
@@ -200,13 +202,13 @@ map({ 'n', 'x', 'o' }, '[]', function()
 end, {})
 
 -- Go to either the start or the end, whichever is closer.
--- Use if you want more granular movements
 map({ 'n', 'x', 'o' }, ']d', function()
     require('nvim-treesitter-textobjects.move').goto_next(
         '@conditional.outer',
         'textobjects'
     )
 end, {})
+
 map({ 'n', 'x', 'o' }, '[d', function()
     require('nvim-treesitter-textobjects.move').goto_previous(
         '@conditional.outer',
@@ -215,7 +217,6 @@ map({ 'n', 'x', 'o' }, '[d', function()
 end, {})
 
 -- Repeatable moves
-
 local ts_repeat_move = require('nvim-treesitter-textobjects.repeatable_move')
 
 -- Repeat movement with ; and ,
@@ -242,3 +243,5 @@ end, {})
 map({ 'n', 'x', 'o' }, '<end>', function()
     ts_repeat_move.repeat_last_move({ forward = true, start = false })
 end, {})
+
+--

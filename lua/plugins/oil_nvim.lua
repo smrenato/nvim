@@ -1,5 +1,4 @@
--- Oil
-
+-- Oil file explorer
 vim.pack.add({
     {
         src = gh('stevearc/oil.nvim'),
@@ -11,7 +10,7 @@ vim.pack.add({
     },
 })
 
-oil = require('oil').setup({
+local oil = require('oil').setup({
 
     default_file_explorer = true,
     skip_confirm_for_simple_edits = false,

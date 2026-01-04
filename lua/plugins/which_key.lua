@@ -1,31 +1,21 @@
-return {
-    'folke/which-key.nvim',
-    event = 'VeryLazy',
-    opts = {
-        preset = 'helix',
-        show_help = false,
-        win = {
-            height = {
-                max = math.huge,
-            },
-        },
+vim.pack.add({
+    { src = gh('folke/which-key.nvim') },
+})
 
-        spec = {
-            {
-                mode = { 'n', 'v' }, -- NORMAL and VISUAL mode
-                { '<leader>q', '<cmd>q<cr>', desc = 'quit' }, -- no need to specify mode since it's inherited
-                { '<leader>w', '<cmd>w<cr>', desc = 'write' },
-            },
+local whichkey = require('which-key').setup({
+    preset = 'helix',
+    show_help = false,
+    win = {
+        height = {
+            max = math.huge,
         },
     },
 
-    keys = {
+    spec = {
         {
-            '<leader>?',
-            function()
-                require('which-key').show({ global = false })
-            end,
-            desc = 'Buffer Local Keymaps (which-key)',
+            mode = { 'n', 'v' }, -- NORMAL and VISUAL mode
+            { '<leader>q', '<cmd>q<cr>', desc = 'quit' }, -- no need to specify mode since it's inherited
+            { '<leader>w', '<cmd>w<cr>', desc = 'write' },
         },
     },
-}
+})

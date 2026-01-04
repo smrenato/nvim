@@ -10,6 +10,11 @@ vim.o.clipboard = 'unnamedplus'
 -- use nerd fonts
 vim.g.have_nerd_font = true
 
+-- better interactions
+-- vim.o.cmdheight = 0
+-- vim.o.cmdwinheight = 1
+vim.o.showmode = false
+
 -- spelling checker
 vim.o.spell = true
 vim.opt.spelllang = { 'en' }

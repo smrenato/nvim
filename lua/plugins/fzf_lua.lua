@@ -1,4 +1,4 @@
--- Seutp kanagawa
+-- Seutp fzf-lua
 vim.pack.add({
     { src = 'https://github.com/ibhagwan/fzf-lua', name = 'fzf-lua' },
     {
@@ -7,7 +7,7 @@ vim.pack.add({
 })
 
 -- Plugin setup`
-blink = require('fzf-lua').setup({
+local blink = require('fzf-lua').setup({
     winopts = {
         preview = {
             vertical = 'down:55%', -- up|down:siz
@@ -17,12 +17,25 @@ blink = require('fzf-lua').setup({
     },
 })
 
-local function map(mode, keys, func, opts)
-    if mode == nil then
-        mode = { 'n' }
-    end
-    vim.keymap.set(mode, keys, func, opts)
-end
+-- Open fzf when enter with no args
+vim.api.nvim_create_autocmd('VimEnter', {
+    callback = function()
+        local a = vim.fn.argv(0)
+        if vim.fn.argc() == 0 then
+            -- Skip if the open as manpager
+            if
+                a:match('^/tmp/mandoc')
+                or a:match('man%.')
+                or vim.bo.filetype == 'man'
+            then
+                return
+            end
+            vim.defer_fn(function()
+                require('fzf-lua').files()
+            end, 30)
+        end
+    end,
+})
 
 -- Map keybinding to fzf
 map('n', '<leader>ff', function()

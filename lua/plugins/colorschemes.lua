@@ -7,7 +7,7 @@ vim.pack.add({
     },
 })
 -- Plugin's code can be used directly after `add()`
-kanagawa = require('kanagawa').setup({
+local kanagawa = require('kanagawa').setup({
     vim.cmd('colorscheme kanagawa'),
 })
 
