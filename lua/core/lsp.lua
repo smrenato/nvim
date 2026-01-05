@@ -1,5 +1,4 @@
 -- Diagnostic Config
--- Auto setup
 vim.diagnostic.config({
     severity_sort = true,
     float = { border = 'rounded', source = 'if_many' },
@@ -12,6 +11,7 @@ vim.diagnostic.config({
             [vim.diagnostic.severity.HINT] = '󰌶 ',
         },
     } or {},
+    virtual_text = true,
 })
 
 -- Better border on hover
@@ -57,35 +57,48 @@ vim.api.nvim_create_autocmd('LspAttach', {
     callback = function(args)
         -- Unset 'formatexpr'
         vim.bo[args.buf].formatexpr = nil
-
         -- Unset 'omnifunc'
         vim.bo[args.buf].omnifunc = nil
+
         local function map(mode, keys, func, opts)
             vim.keymap.set(mode, keys, func, opts)
         end
 
+        -- Lsp rename
         map('n', 'grn', vim.lsp.buf.rename, { desc = 'lsp rename' })
+
+        -- Document symbol
         map(
             'n',
             'gO',
             vim.lsp.buf.document_symbol,
             { desc = 'lsp Document symbol' }
         )
+        -- Lsp declaration
         map('n', 'grD', vim.lsp.buf.declaration, { desc = 'lsp declaration' })
+
+        -- Lsp definitions
         map('n', 'grd', vim.lsp.buf.definition, { desc = 'lsp definition' })
+
+        -- Lsp Code actions
         map(
             { 'n', 'v' },
             'gra',
             vim.lsp.buf.code_action,
             { desc = 'lsp code actions' }
         )
+        -- Lsp references
         map('n', 'grr', vim.lsp.buf.references, { desc = 'lsp references' })
+
+        -- Lsp implementation
         map(
             'n',
             'gri',
             vim.lsp.buf.implementation,
             { desc = 'lsp implementation' }
         )
+
+        -- Lsp Type definitions
         map(
             'n',
             'grt',
