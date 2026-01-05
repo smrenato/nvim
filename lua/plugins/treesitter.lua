@@ -51,8 +51,11 @@ local treesitter = require('nvim-treesitter').setup({})
 vim.api.nvim_create_autocmd('FileType', {
     pattern = parsers,
     callback = function(args)
+        -- current language
         local ft = vim.bo[args.buf].filetype
         local lang = vim.treesitter.language.get_lang(ft)
+
+        -- Check if there available languages
 
         if not vim.treesitter.language.add(lang) then
             local available = vim.g.ts_available
@@ -65,6 +68,7 @@ vim.api.nvim_create_autocmd('FileType', {
             end
         end
 
+        -- Set with current buf number
         if vim.treesitter.language.add(lang) then
             vim.treesitter.start(args.buf, lang)
             -- vim.bo.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"

@@ -1,4 +1,5 @@
 -- Diagnostic Config
+-- Take diagnostics based on the configs of MariaSolos gh:https://github.com/MariaSolOs/dotfiles/tree/main/.config/nvim
 vim.diagnostic.config({
     severity_sort = true,
     float = { border = 'rounded', source = 'if_many' },
@@ -11,7 +12,10 @@ vim.diagnostic.config({
             [vim.diagnostic.severity.HINT] = '󰌶 ',
         },
     } or {},
-    virtual_text = true,
+    virtual_text = {
+        severity = { min = vim.diagnostic.severity.ERROR }, -- only show virtual text for Error
+        prefix = '●', -- or use "" to keep it minimal
+    },
 })
 
 -- Better border on hover
