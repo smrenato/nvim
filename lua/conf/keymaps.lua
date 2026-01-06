@@ -1,19 +1,8 @@
+-- The majority keymaps are set using which-key plugin
 -- helper function
 local function map(mode, keys, func, opts)
     vim.keymap.set(mode, keys, func, opts)
 end
-
-map('n', '<leader>m', '<CMD>Mason<CR>', { desc = 'Open Mason' })
-map('n', '<leader>RR', '<CMD>restart<CR>', { desc = 'Restart neovim' })
-
--- Open mini files
--- map('n', '<leader>e', function()
---     require('mini.files').open()
--- end, { desc = 'open file explorer' })
-
-map('n', '<leader>e', function()
-    require('oil').open_float()
-end, { desc = 'open file explorer' })
 
 -- Clear hlsearch
 map({ 'i', 'n', 's' }, '<esc>', function()
@@ -21,50 +10,13 @@ map({ 'i', 'n', 's' }, '<esc>', function()
     return '<esc>'
 end, { expr = true, desc = 'escape and clear hlsearch' })
 
--- Toggle diagnostic
-map('n', '<leader>cd', function()
-    vim.diagnostic.enable(not vim.diagnostic.is_enabled())
-end, { desc = 'Toggle diagnostics' })
-
--- Open diagnostics float
-map('n', '<leader>cD', function()
-    vim.diagnostic.open_float()
-end, { desc = 'Open diagnostics float' })
-
--- Toggle inlay hints
-map('n', '<leader>ch', function()
-    vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
-end, { desc = 'toggle inlay hints' })
-
--- lsp keymaps
-map('n', 'gra', vim.lsp.buf.code_action, { desc = 'lsp code actions' })
-
-map('n', 'K', function()
-    vim.lsp.buf.hover({ max_width = 90, max_height = 50 })
-end, { desc = 'buff hover' })
-
--- code format
-map('n', '<leader>cf', function()
-    require('conform').format({
-        lsp_format = 'fallback',
-    })
-end, { desc = 'format current file' })
-
 -- better indenting
 map('v', '<', '<gv')
 map('v', '>', '>gv')
 
--- save file
-map({ 'i', 'x', 'n', 's' }, '<C-s>', '<cmd>w<cr><esc>', { desc = 'save file' })
-
 -- Buffers
 map('n', '<S-h>', '<cmd>bprevious<cr>', { desc = 'prev buffer' })
 map('n', '<S-l>', '<cmd>bnext<cr>', { desc = 'next buffer' })
-map('n', '[b', '<cmd>bprevious<cr>', { desc = 'prev buffer' })
-map('n', ']b', '<cmd>bnext<cr>', { desc = 'next buffer' })
-
-map('n', '<leader>bb', '<cmd>e #<cr>', { desc = 'switch to other buffer' })
-map('n', '<leader>bD', '<cmd>:bd<cr>', { desc = 'delete buffer and window' })
 
 -- https://github.com/mhinz/vim-galore#saner-behavior-of-n-and-n
 map(
@@ -73,6 +25,7 @@ map(
     "'Nn'[v:searchforward].'zv'",
     { expr = true, desc = 'next search result' }
 )
+
 map(
     'x',
     'n',

@@ -57,6 +57,7 @@ vim.api.nvim_create_autocmd('FileType', {
 
         -- Check if there available languages
 
+        ---@diagnostic disable-line: assign-type-mismatch
         if not vim.treesitter.language.add(lang) then
             local available = vim.g.ts_available
                 or require('nvim-treesitter').get_available()
@@ -96,14 +97,14 @@ local textobjects = require('nvim-treesitter-textobjects').setup({
 })
 
 -- Surroundings
-map({ 'x', 'o' }, 'am', function()
+map({ 'x', 'o' }, 'af', function()
     require('nvim-treesitter-textobjects.select').select_textobject(
         '@function.outer',
         'textobjects'
     )
 end, {})
 
-map({ 'x', 'o' }, 'im', function()
+map({ 'x', 'o' }, 'if', function()
     require('nvim-treesitter-textobjects.select').select_textobject(
         '@function.inner',
         'textobjects'
@@ -133,17 +134,18 @@ end, {})
 -- Swaps
 map('n', '<leader>a', function()
     require('nvim-treesitter-textobjects.swap').swap_next('@parameter.inner')
-end, {})
+end, { desc = 'code swap inner' })
+
 map('n', '<leader>A', function()
     require('nvim-treesitter-textobjects.swap').swap_previous(
         '@parameter.outer'
     )
-end, {})
+end, { desc = 'code swap outer' })
 
 -- Moves
 
 -- functions
-map({ 'n', 'x', 'o' }, ']m', function()
+map({ 'n', 'x', 'o' }, ']f', function()
     require('nvim-treesitter-textobjects.move').goto_next_start(
         '@function.outer',
         'textobjects'
@@ -175,12 +177,13 @@ map({ 'n', 'x', 'o' }, ']z', function()
     )
 end, {})
 
-map({ 'n', 'x', 'o' }, ']M', function()
+map({ 'n', 'x', 'o' }, ']F', function()
     require('nvim-treesitter-textobjects.move').goto_next_end(
         '@function.outer',
         'textobjects'
     )
 end, {})
+
 map({ 'n', 'x', 'o' }, '][', function()
     require('nvim-treesitter-textobjects.move').goto_next_end(
         '@class.outer',
@@ -188,12 +191,13 @@ map({ 'n', 'x', 'o' }, '][', function()
     )
 end, {})
 
-map({ 'n', 'x', 'o' }, '[m', function()
+map({ 'n', 'x', 'o' }, '[f', function()
     require('nvim-treesitter-textobjects.move').goto_previous_start(
         '@function.outer',
         'textobjects'
     )
 end, {})
+
 map({ 'n', 'x', 'o' }, '[[', function()
     require('nvim-treesitter-textobjects.move').goto_previous_start(
         '@class.outer',
@@ -201,7 +205,7 @@ map({ 'n', 'x', 'o' }, '[[', function()
     )
 end, {})
 
-map({ 'n', 'x', 'o' }, '[M', function()
+map({ 'n', 'x', 'o' }, '[F', function()
     require('nvim-treesitter-textobjects.move').goto_previous_end(
         '@function.outer',
         'textobjects'
@@ -233,29 +237,21 @@ end, {})
 -- Repeatable moves
 local ts_repeat_move = require('nvim-treesitter-textobjects.repeatable_move')
 
--- Repeat movement with ; and ,
--- ensure ; goes forward and , goes backward regardless of the last direction
 map({ 'n', 'x', 'o' }, ';', ts_repeat_move.repeat_last_move_next)
 map({ 'n', 'x', 'o' }, ',', ts_repeat_move.repeat_last_move_previous)
 
 -- vim way: ; goes to the direction you were moving.
 -- map({ "n", "x", "o" }, ";", ts_repeat_move.repeat_last_move)
 -- map({ "n", "x", "o" }, ",", ts_repeat_move.repeat_last_move_opposite)
-
--- Optionally, make builtin f, F, t, T also repeatable with ; and ,
 map({ 'n', 'x', 'o' }, 'f', ts_repeat_move.builtin_f_expr, { expr = true })
 map({ 'n', 'x', 'o' }, 'F', ts_repeat_move.builtin_F_expr, { expr = true })
 map({ 'n', 'x', 'o' }, 't', ts_repeat_move.builtin_t_expr, { expr = true })
 map({ 'n', 'x', 'o' }, 'T', ts_repeat_move.builtin_T_expr, { expr = true })
 
--- This repeats the last query with always previous direction and to the start of the range.
 map({ 'n', 'x', 'o' }, '<home>', function()
     ts_repeat_move.repeat_last_move({ forward = false, start = true })
 end, {})
 
--- This repeats the last query with always next direction and to the end of the range.
 map({ 'n', 'x', 'o' }, '<end>', function()
     ts_repeat_move.repeat_last_move({ forward = true, start = false })
 end, {})
-
---

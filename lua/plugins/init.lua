@@ -14,14 +14,14 @@ map = function(mode, keys, func, opts)
 end
 
 -- which pugins has to be activated
-require('plugins.blink_cmp')
 require('plugins.colorschemes')
+require('plugins.which_key')
 require('plugins.fzf_lua')
-require('plugins.conform')
-require('plugins.lualine')
 require('plugins.oil_nvim')
+require('plugins.lualine')
 require('plugins.treesitter')
+require('plugins.conform')
+require('plugins.blink_cmp')
 require('plugins.mini_nvim')
 require('plugins.fidget')
-require('plugins.which_key')
 require('plugins.guess_indent')

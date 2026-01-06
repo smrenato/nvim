@@ -17,50 +17,50 @@ local blink = require('fzf-lua').setup({
     },
 })
 
--- Open fzf when enter with no args
-vim.api.nvim_create_autocmd('VimEnter', {
-    callback = function()
-        local a = vim.fn.argv(0)
-        if vim.fn.argc() == 0 then
-            -- Skip if the open as manpager
-            if
-                a:match('^/tmp/mandoc')
-                or a:match('man%.')
-                or vim.bo.filetype == 'man'
-            then
-                return
-            end
-            vim.defer_fn(function()
-                require('fzf-lua').files()
-            end, 30)
-        end
-    end,
-})
+-- -- Open fzf when enter with no args
+-- vim.api.nvim_create_autocmd('VimEnter', {
+--     callback = function()
+--         local a = vim.fn.argv(0)
+--         if vim.fn.argc() == 0 then
+--             -- Skip if the open as manpager
+--             if
+--                 a:match('^/tmp/mandoc')
+--                 or a:match('man%.')
+--                 or vim.bo.filetype == 'man'
+--             then
+--                 return
+--             end
+--             vim.defer_fn(function()
+--                 require('fzf-lua').files()
+--             end, 30)
+--         end
+--     end,
+-- })
 
 -- Map keybinding to fzf
 map('n', '<leader>ff', function()
     require('fzf-lua').files()
-end, { desc = 'find files in project directory' })
+end, { desc = 'files in project directory' })
 
 map('n', '<leader>fg', function()
     require('fzf-lua').live_grep()
-end, { desc = 'find by grepping in project directory' })
+end, { desc = 'grep files in project directory' })
 
 map('n', '<leader>fc', function()
     require('fzf-lua').files({ cwd = vim.fn.stdpath('config') })
-end, { desc = 'find in neovim configuration' })
+end, { desc = 'find configuration' })
 
 map('n', '<leader>fh', function()
     require('fzf-lua').helptags()
-end, { desc = 'find help' })
+end, { desc = 'search for help' })
 
 map('n', '<leader>fk', function()
     require('fzf-lua').keymaps()
-end, { desc = 'find keymaps' })
+end, { desc = 'search keymaps' })
 
 map('n', '<leader>fb', function()
     require('fzf-lua').builtin()
-end, { desc = 'find builtin fzf' })
+end, { desc = 'search builtin fzf' })
 
 map('n', '<leader>fw', function()
     require('fzf-lua').grep_cword()
@@ -88,8 +88,8 @@ end, { desc = 'find old files' })
 
 map('n', '<leader><leader>', function()
     require('fzf-lua').buffers()
-end, { desc = ', find existing buffers' })
+end, { desc = 'find existing buffers' })
 
 map('n', '<leader>/', function()
     require('fzf-lua').lgrep_curbuf()
-end, { desc = '/ live grep the current buffer' })
+end, { desc = 'live grep buffer' })

@@ -1,4 +1,5 @@
 local diagnostic_icons = require('core.icons').diagnostics
+local wk = require('which-key')
 
 local M = {}
 
@@ -21,24 +22,43 @@ local function on_attach(client, bufnr)
         vim.keymap.set(mode, lhs, rhs, opts)
     end
 
-    keymap('[d', function()
-        vim.diagnostic.jump({ count = -1 })
-    end, 'Previous diagnostic')
-    keymap(']d', function()
-        vim.diagnostic.jump({ count = 1 })
-    end, 'Next diagnostic')
-    keymap('[e', function()
-        vim.diagnostic.jump({
-            count = -1,
-            severity = vim.diagnostic.severity.ERROR,
-        })
-    end, 'Previous error')
-    keymap(']e', function()
-        vim.diagnostic.jump({
-            count = 1,
-            severity = vim.diagnostic.severity.ERROR,
-        })
-    end, 'Next error')
+    wk.add({
+        mode = 'n',
+        {
+            '[d',
+            function()
+                vim.diagnostic.jump({ count = -1 })
+            end,
+            desc = 'previous diagnostic',
+        },
+        {
+            ']d',
+            function()
+                vim.diagnostic.jump({ count = 1 })
+            end,
+            desc = 'next diagnostic',
+        },
+        {
+            '[e',
+            function()
+                vim.diagnostic.jump({
+                    count = -1,
+                    severity = vim.diagnostic.severity.ERROR,
+                })
+            end,
+            desc = 'previous error',
+        },
+        {
+            ']e',
+            function()
+                vim.diagnostic.jump({
+                    count = 1,
+                    severity = vim.diagnostic.severity.ERROR,
+                })
+            end,
+            desc = 'next error',
+        },
+    })
 
     if client:supports_method('textDocument/codeAction') then
         require('core.lightbulb').attach_lightbulb(bufnr, client)
@@ -47,17 +67,23 @@ local function on_attach(client, bufnr)
     -- Don't check for the capability here to allow dynamic registration of the request.
     vim.lsp.document_color.enable(true, bufnr)
     if client:supports_method('textDocument/documentColor') then
-        keymap('grc', function()
-            vim.lsp.document_color.color_presentation()
-        end, 'vim.lsp.document_color.color_presentation()', { 'n', 'x' })
+        wk.add({
+            mode = { 'n', 'x' },
+            'grc',
+            function()
+                vim.lsp.document_color.color_presentation()
+            end,
+            desc = 'lsp color presentation',
+        })
     end
 
     if client:supports_method('textDocument/references') then
-        keymap(
+        wk.add({
+            mode = 'n',
             'grr',
             '<cmd>FzfLua lsp_references<cr>',
-            'vim.lsp.buf.references()'
-        )
+            desc = 'fzf find references',
+        })
     end
 
     if client:supports_method('textDocument/typeDefinition') then
