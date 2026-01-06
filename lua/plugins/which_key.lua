@@ -31,16 +31,8 @@ wk.add({
             function()
                 require('oil').open_float()
             end,
-            desc = 'file explorer keys',
-            group = 'oil explorer ',
-            icon = { icon = '󰉋 ', color = 'orange' },
-        },
-        {
-            '<leader>ee',
-            function()
-                require('oil').open_preview()
-            end,
-            desc = 'oil open preview under cursor',
+            desc = 'Oil explorer',
+            icon = { icon = '󰉋 ', color = 'red' },
         },
     },
 
