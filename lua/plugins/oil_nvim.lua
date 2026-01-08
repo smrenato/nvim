@@ -5,7 +5,7 @@ vim.pack.add({
         name = 'oil',
     },
     {
-        src = gh('vim-tree/nvim-web-devicons'),
+        src = gh('nvim-tree/nvim-web-devicons'),
         name = 'devicons',
     },
 })

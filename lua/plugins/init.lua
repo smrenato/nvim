@@ -15,14 +15,14 @@ end
 
 -- which pugins has to be activated
 require('plugins.colorschemes')
+require('plugins.guess_indent')
+require('plugins.treesitter')
 require('plugins.which_key')
 require('plugins.fzf_lua')
 require('plugins.oil_nvim')
 require('plugins.lualine')
-require('plugins.treesitter')
 require('plugins.conform')
 require('plugins.blink_cmp')
 require('plugins.mini_nvim')
 require('plugins.fidget')
-require('plugins.guess_indent')
 require('plugins.gitsigns')
