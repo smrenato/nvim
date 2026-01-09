@@ -8,4 +8,8 @@ vim.pack.add({
 
 local tiny = require('tiny-inline-diagnostic').setup({
     diagnostics = { virtual_text = false },
+
+    -- Choose a preset style for diagnostic appearance
+    -- Available: "modern", "classic", "minimal", "powerline", "ghost", "simple", "nonerdfont", "amongus"
+    preset = 'ghost',
 })

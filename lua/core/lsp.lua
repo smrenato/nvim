@@ -1,4 +1,3 @@
-local diagnostic_icons = require('core.icons').diagnostics
 local wk = require('which-key')
 
 local M = {}
@@ -7,21 +6,7 @@ local M = {}
 vim.g.inlay_hints = false
 
 --- Sets up LSP keymaps and autocommands for the given buffer.
----@param client vim.lsp.Client
----@param bufnr integer
 local function on_attach(client, bufnr)
-    ---@param lhs string
-    ---@param rhs string|function
-    ---@param opts string|vim.keymap.set.Opts
-    ---@param mode? string|string[]
-    local function keymap(lhs, rhs, opts, mode)
-        mode = mode or 'n'
-        ---@cast opts vim.keymap.set.Opts
-        opts = type(opts) == 'string' and { desc = opts } or opts
-        opts.buffer = bufnr
-        vim.keymap.set(mode, lhs, rhs, opts)
-    end
-
     wk.add({
         mode = 'n',
         {
@@ -60,12 +45,9 @@ local function on_attach(client, bufnr)
         },
     })
 
-    if client:supports_method('textDocument/codeAction') then
-        require('core.lightbulb').attach_lightbulb(bufnr, client)
-    end
-
     -- Don't check for the capability here to allow dynamic registration of the request.
     vim.lsp.document_color.enable(true, bufnr)
+
     if client:supports_method('textDocument/documentColor') then
         wk.add({
             mode = { 'n', 'x' },
@@ -87,57 +69,59 @@ local function on_attach(client, bufnr)
     end
 
     if client:supports_method('textDocument/typeDefinition') then
-        keymap('gy', '<cmd>FzfLua lsp_typedefs<cr>', 'Go to type definition')
+        wk.add({
+            mode = 'n',
+            'gy',
+            '<cmd>FzfLua lsp_typedefs<cr>',
+            desc = 'Go to type definition',
+        })
     end
 
     if client:supports_method('textDocument/documentSymbol') then
-        keymap(
+        wk.add({
+            mode = 'n',
             '<leader>fs',
             '<cmd>FzfLua lsp_document_symbols<cr>',
-            'Document symbols'
-        )
+            desc = 'Document symbols',
+        })
     end
 
     if client:supports_method('textDocument/definition') then
-        keymap('gd', function()
-            require('fzf-lua').lsp_definitions({ jump1 = true })
-        end, 'Go to definition')
-        keymap('gD', function()
-            require('fzf-lua').lsp_definitions({ jump1 = false })
-        end, 'Peek definition')
+        wk.add({
+            mode = 'n',
+            'gd',
+            function()
+                require('fzf-lua').lsp_definitions({ jump1 = true })
+            end,
+            desc = 'Go to definition',
+        })
+
+        wk.add({
+            mode = 'n',
+            'gD',
+            function()
+                require('fzf-lua').lsp_definitions({ jump1 = false })
+            end,
+            desc = 'Peek definition',
+        })
     end
 
     if client:supports_method('textDocument/signatureHelp') then
-        keymap('<C-k>', function()
-            -- Close the completion menu first (if open).
-            if require('blink.cmp.completion.windows.menu').win:is_open() then
-                require('blink.cmp').hide()
-            end
+        wk.add({
+            mode = 'i',
+            '<C-k>',
+            function()
+                -- Close the completion menu first (if open).
+                if
+                    require('blink.cmp.completion.windows.menu').win:is_open()
+                then
+                    require('blink.cmp').hide()
+                end
 
-            vim.lsp.buf.signature_help()
-        end, 'Signature help', 'i')
-    end
-
-    if client:supports_method('textDocument/documentHighlight') then
-        local under_cursor_highlights_group = vim.api.nvim_create_augroup(
-            'mariasolos/cursor_highlights',
-            { clear = false }
-        )
-        vim.api.nvim_create_autocmd({ 'CursorHold', 'InsertLeave' }, {
-            group = under_cursor_highlights_group,
-            desc = 'Highlight references under the cursor',
-            buffer = bufnr,
-            callback = vim.lsp.buf.document_highlight,
+                vim.lsp.buf.signature_help()
+            end,
+            desc = 'Signature help',
         })
-        vim.api.nvim_create_autocmd(
-            { 'CursorMoved', 'InsertEnter', 'BufLeave' },
-            {
-                group = under_cursor_highlights_group,
-                desc = 'Clear highlight references',
-                buffer = bufnr,
-                callback = vim.lsp.buf.clear_references,
-            }
-        )
     end
 
     if client:supports_method('textDocument/inlayHint') then
@@ -148,7 +132,6 @@ local function on_attach(client, bufnr)
 
         if vim.g.inlay_hints then
             -- Initial inlay hint display.
-            -- Idk why but without the delay inlay hints aren't displayed at the very start.
             vim.defer_fn(function()
                 local mode = vim.api.nvim_get_mode().mode
                 vim.lsp.inlay_hint.enable(
@@ -180,90 +163,13 @@ local function on_attach(client, bufnr)
             end,
         })
     end
-
-    -- Add "Fix all" command for linters.
-    if client.name == 'eslint' or client.name == 'stylelint_lsp' then
-        vim.keymap.set('n', '<leader>cl', function()
-            if not client then
-                return
-            end
-
-            client:request('workspace/executeCommand', {
-                command = client.name == 'eslint' and 'eslint.applyAllFixes'
-                    or 'stylelint.applyAutoFixes',
-                arguments = {
-                    {
-                        uri = vim.uri_from_bufnr(bufnr),
-                        version = vim.lsp.util.buf_versions[bufnr],
-                    },
-                },
-            }, nil, bufnr)
-        end, {
-            desc = string.format(
-                'Fix all %s errors',
-                client.name == 'eslint' and 'ESLint' or 'Stylelint'
-            ),
-            buffer = bufnr,
-        })
-    end
-end
-
--- Define the diagnostic signs.
-for severity, icon in pairs(diagnostic_icons) do
-    local hl = 'DiagnosticSign'
-        .. severity:sub(1, 1)
-        .. severity:sub(2):lower()
-    vim.fn.sign_define(hl, { text = icon, texthl = hl })
 end
 
 -- Diagnostic configuration.
 vim.diagnostic.config({
-    -- status = {
-    --     text = {
-    --         [vim.diagnostic.severity.ERROR] = diagnostic_icons.ERROR,
-    --         [vim.diagnostic.severity.WARN] = diagnostic_icons.WARN,
-    --         [vim.diagnostic.severity.INFO] = diagnostic_icons.INFO,
-    --         [vim.diagnostic.severity.HINT] = diagnostic_icons.HINT,
-    --     },
-    -- },
-    -- virtual_text = {
-    --     prefix = '',
-    --     spacing = 2,
-    --     severity = { min = vim.diagnostic.severity.ERROR }, -- only show virtual text for Error
-    --     format = function(diagnostic)
-    --         -- Use shorter, nicer names for some sources:
-    --         local special_sources = {
-    --             ['Lua Diagnostics.'] = 'lua',
-    --             ['Lua Syntax Check.'] = 'lua',
-    --         }
-    --
-    --         local message =
-    --             diagnostic_icons[vim.diagnostic.severity[diagnostic.severity]]
-    --         if diagnostic.source then
-    --             message = string.format(
-    --                 '%s %s',
-    --                 message,
-    --                 special_sources[diagnostic.source] or diagnostic.source
-    --             )
-    --         end
-    --         if diagnostic.code then
-    --             message = string.format('%s[%s]', message, diagnostic.code)
-    --         end
-    --
-    --         return message .. ' '
-    --     end,
-    -- },
-    -- float = {
-    --     source = 'if_many',
-    --     -- Show severity icons as prefixes.
-    --     prefix = function(diag)
-    --         local level = vim.diagnostic.severity[diag.severity]
-    --         local prefix = string.format(' %s ', diagnostic_icons[level])
-    --         return prefix, 'Diagnostic' .. level:gsub('^%l', string.upper)
-    --     end,
-    -- },
-    -- -- Disable signs in the gutter.
-    -- signs = false,
+    virtual_text = false,
+    -- Disable signs in the gutter.
+    signs = false,
 })
 
 -- Override the virtual text diagnostic handler so that the most severe diagnostic is shown first.
