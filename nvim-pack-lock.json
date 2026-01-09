@@ -72,6 +72,10 @@
       "rev": "81b8a91735ad5cd24a6b3137f14a89f19176364f",
       "src": "https://github.com/stevearc/oil.nvim"
     },
+    "tiny-diagnostics": {
+      "rev": "c7b1488ad0b389763c34bd17a6264424b3da5a52",
+      "src": "https://github.com/rachartier/tiny-inline-diagnostic.nvim"
+    },
     "which-key.nvim": {
       "rev": "3aab2147e74890957785941f0c1ad87d0a44c15a",
       "src": "https://github.com/folke/which-key.nvim"
