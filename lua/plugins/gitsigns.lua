@@ -1,28 +1,8 @@
-local solid_bar = require('core.icons').misc.vertical_bar
-local dashed_bar = require('core.icons').misc.dashed_bar
-
 vim.pack.add({
     { src = gh('lewis6991/gitsigns.nvim') },
 })
 
-local gs = require('gitsigns').setup({
-    signs = {
-        add = { text = solid_bar },
-        untracked = { text = solid_bar },
-        change = { text = solid_bar },
-        delete = { text = solid_bar },
-        topdelete = { text = solid_bar },
-        changedelete = { text = solid_bar },
-    },
-    signs_staged = {
-        add = { text = dashed_bar },
-        untracked = { text = dashed_bar },
-        change = { text = dashed_bar },
-        delete = { text = dashed_bar },
-        topdelete = { text = dashed_bar },
-        changedelete = { text = dashed_bar },
-    },
-    preview_config = { border = 'rounded' },
+local gitsigns = require('gitsigns').setup({
     current_line_blame = true,
     gh = true,
 })

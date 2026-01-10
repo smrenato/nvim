@@ -12,4 +12,6 @@ local tiny = require('tiny-inline-diagnostic').setup({
     -- Choose a preset style for diagnostic appearance
     -- Available: "modern", "classic", "minimal", "powerline", "ghost", "simple", "nonerdfont", "amongus"
     preset = 'ghost',
+    -- Make diagnostic background transparent
+    transparent_bg = false,
 })
