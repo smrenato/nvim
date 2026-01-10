@@ -3,35 +3,103 @@ vim.pack.add({
 })
 
 local gitsigns = require('gitsigns').setup({
+    signs = {
+        add = { text = '▎' },
+        change = { text = '▎' },
+        delete = { text = '▎' },
+        topdelete = { text = '▎' },
+        changedelete = { text = '▎' },
+        untracked = { text = '▎' },
+    },
+
+    signs_staged = {
+        add = { text = '▎' },
+        change = { text = '▎' },
+        delete = { text = '▎' },
+        topdelete = { text = '▎' },
+        changedelete = { text = '▎' },
+    },
+
     current_line_blame = true,
     gh = true,
-})
 
-vim.api.nvim_create_autocmd({ 'BufReadPre', 'BufNewFile' }, {
-    callback = function()
-        local bufnr = vim.api.nvim_get_current_buf()
+    on_attach = function(buffer)
         local gs = package.loaded.gitsigns
 
-        -- Register the leader group with miniclue.
-        vim.b[bufnr].miniclue_config = {
-            clues = {
-                { mode = 'n', keys = '<leader>g', desc = '+git' },
-                { mode = 'x', keys = '<leader>g', desc = '+git' },
-            },
-        }
-        -- Mappings.
-        ---@param lhs string
-        ---@param rhs function
-        ---@param desc string
-        local function nmap(lhs, rhs, desc)
-            vim.keymap.set('n', lhs, rhs, { desc = desc, buffer = bufnr })
+        local function map(mode, l, r, desc)
+            vim.keymap.set(
+                mode,
+                l,
+                r,
+                { buffer = buffer, desc = desc, silent = true }
+            )
         end
-        nmap('[g', gs.prev_hunk, 'Previous hunk')
-        nmap(']g', gs.next_hunk, 'Next hunk')
-        nmap('<leader>gR', gs.reset_buffer, 'Reset buffer')
-        nmap('<leader>gb', gs.blame_line, 'Blame line')
-        nmap('<leader>gp', gs.preview_hunk, 'Preview hunk')
-        nmap('<leader>gr', gs.reset_hunk, 'Reset hunk')
-        nmap('<leader>gs', gs.stage_hunk, 'Stage hunk')
+
+        map('n', ']h', function()
+            if vim.wo.diff then
+                vim.cmd.normal({ ']c', bang = true })
+            else
+                gs.nav_hunk('next')
+            end
+        end, 'next hunk')
+
+        map('n', '[h', function()
+            if vim.wo.diff then
+                vim.cmd.normal({ '[c', bang = true })
+            else
+                gs.nav_hunk('prev')
+            end
+        end, 'prev hunk')
+
+        map('n', ']H', function()
+            gs.nav_hunk('last')
+        end, 'last hunk')
+
+        map('n', '[H', function()
+            gs.nav_hunk('first')
+        end, 'first hunk')
+
+        map(
+            { 'n', 'x' },
+            '<leader>ghs',
+            ':Gitsigns stage_hunk<CR>',
+            'stage hunk'
+        )
+        map(
+            { 'n', 'x' },
+            '<leader>ghr',
+            ':Gitsigns reset_hunk<CR>',
+            'reset hunk'
+        )
+        map('n', '<leader>ghS', gs.stage_buffer, 'stage buffer')
+        map('n', '<leader>ghu', gs.undo_stage_hunk, 'undo stage hunk')
+        map('n', '<leader>ghR', gs.reset_buffer, 'reset buffer')
+        map('n', '<leader>ghp', gs.preview_hunk_inline, 'preview hunk inline')
+
+        map('n', '<leader>ghb', function()
+            gs.blame_line({ full = true })
+        end, 'blame line')
+
+        map('n', '<leader>ghB', function()
+            gs.blame()
+        end, 'blame buffer')
+
+        map('n', '<leader>ghd', gs.diffthis, 'diff this')
+
+        map('n', '<leader>ghD', function()
+            gs.diffthis('~')
+        end, 'diff this ~')
+
+        -- Toggles
+        map(
+            'n',
+            '<leader>gtb',
+            gs.toggle_current_line_blame,
+            'toggle blame current line'
+        )
+        map('n', '<leader>gtw', gs.toggle_word_diff, 'toggle diff word')
+
+        -- Text objects
+        map({ 'o', 'x' }, 'ih', gs.select_hunk, 'select hunk')
     end,
 })

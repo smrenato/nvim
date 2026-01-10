@@ -73,7 +73,7 @@ local function on_attach(client, bufnr)
             mode = 'n',
             'gy',
             '<cmd>FzfLua lsp_typedefs<cr>',
-            desc = 'Go to type definition',
+            desc = 'go to type definition',
         })
     end
 
@@ -82,7 +82,7 @@ local function on_attach(client, bufnr)
             mode = 'n',
             '<leader>fs',
             '<cmd>FzfLua lsp_document_symbols<cr>',
-            desc = 'Document symbols',
+            desc = 'document symbols',
         })
     end
 
@@ -93,7 +93,7 @@ local function on_attach(client, bufnr)
             function()
                 require('fzf-lua').lsp_definitions({ jump1 = true })
             end,
-            desc = 'Go to definition',
+            desc = 'go to definition',
         })
 
         wk.add({
@@ -102,7 +102,7 @@ local function on_attach(client, bufnr)
             function()
                 require('fzf-lua').lsp_definitions({ jump1 = false })
             end,
-            desc = 'Peek definition',
+            desc = 'peek definition',
         })
     end
 
@@ -120,7 +120,7 @@ local function on_attach(client, bufnr)
 
                 vim.lsp.buf.signature_help()
             end,
-            desc = 'Signature help',
+            desc = 'signature help',
         })
     end
 
