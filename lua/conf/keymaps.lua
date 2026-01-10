@@ -4,6 +4,28 @@ local function map(mode, keys, func, opts)
     vim.keymap.set(mode, keys, func, opts)
 end
 
+-- Helper maps to lsp
+map('n', 'gO', function()
+    vim.lsp.buf.document_symbol()
+end, { desc = 'code document symbols' })
+
+map('n', 'gri', function()
+    vim.lsp.buf.implementation()
+end, { desc = 'code go to implementation' })
+map('n', 'grn', function()
+    vim.lsp.buf.rename()
+end, { desc = 'code rename' })
+map('n', 'grr', function()
+    vim.lsp.buf.references()
+end, { desc = 'code go to references' })
+
+map('n', 'grt', function()
+    vim.lsp.buf.type_definition()
+end, { desc = 'code go to type definitions' })
+map({ 'v', 'n' }, 'gra', function()
+    vim.lsp.buf.code_action()
+end, { desc = 'code actions' })
+
 -- Clear hlsearch
 map({ 'i', 'n', 's' }, '<esc>', function()
     vim.cmd('noh')
