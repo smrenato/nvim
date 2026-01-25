@@ -9,6 +9,10 @@
       "rev": "8314f4c9e205e7f30b62147069729f9a1227d8bf",
       "src": "https://github.com/stevearc/conform.nvim"
     },
+    "dashboard-nvim": {
+      "rev": "0775e567b6c0be96d01a61795f7b64c1758262f6",
+      "src": "https://github.com/nvimdev/dashboard-nvim"
+    },
     "devicons": {
       "rev": "6788013bb9cb784e606ada44206b0e755e4323d7",
       "src": "https://github.com/nvim-tree/nvim-web-devicons"
@@ -53,6 +57,10 @@
     "mini.surround": {
       "rev": "cc7b9d0a056b5fa6915ffac1cb91f29bf7c96f69",
       "src": "https://github.com/nvim-mini/mini.surround"
+    },
+    "nvim": {
+      "rev": "beaf41a30c26fd7d6c386d383155cbd65dd554cd",
+      "src": "https://github.com/catppuccin/nvim"
     },
     "nvim-treesitter": {
       "rev": "de878155ca66c49b027b1380e4e60a6c665b2630",

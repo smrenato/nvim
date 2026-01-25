@@ -17,6 +17,7 @@ end
 require('plugins.colorschemes')
 require('plugins.guess_indent')
 require('plugins.treesitter')
+require('plugins.dashboard')
 require('plugins.which_key')
 require('plugins.fzf_lua')
 require('plugins.oil_nvim')
