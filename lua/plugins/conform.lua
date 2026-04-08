@@ -1,12 +1,11 @@
 -- Better formatter
 vim.pack.add({
     {
-        src = gh('stevearc/conform.nvim'),
-        name = 'conform',
+        src = 'https://github.com/stevearc/conform.nvim',
     },
 })
 -- Plugins setup
-local kanagawa = require('conform').setup({
+local conform = require('conform').setup({
     formatters_by_ft = {
         lua = { 'stylua' },
         python = { 'ruff_fix', 'ruff_format', 'ruff_organize_imports' },

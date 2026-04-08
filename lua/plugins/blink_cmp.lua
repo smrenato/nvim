@@ -1,11 +1,12 @@
-vim.pack.add({
+-- Blink completion
+vim.pack.add {
     {
-        src = gh('Saghen/blink.cmp'),
-        version = vim.version.range('1.*'),
+        src = 'https://github.com/Saghen/blink.cmp',
+        version = vim.version.range '1.*',
     },
-})
--- Plugin's code can be used directly after `add()`
-local blink = require('blink.cmp').setup({
+}
+
+local blink = require('blink.cmp').setup {
     keymap = { preset = 'default' },
 
     appearance = {
@@ -22,4 +23,4 @@ local blink = require('blink.cmp').setup({
 
     -- Experimental signature help support
     signature = { enabled = true },
-})
+}

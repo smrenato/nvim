@@ -1,12 +1,10 @@
 -- Oil file explorer
 vim.pack.add({
     {
-        src = gh('stevearc/oil.nvim'),
-        name = 'oil',
+        src = 'https://github.com/stevearc/oil.nvim',
     },
     {
-        src = gh('nvim-tree/nvim-web-devicons'),
-        name = 'devicons',
+        src = 'https://github.com/nvim-tree/nvim-web-devicons',
     },
 })
 

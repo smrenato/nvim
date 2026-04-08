@@ -1,19 +1,18 @@
-vim.pack.add({
+vim.pack.add {
 
     {
-        src = gh('nvimdev/dashboard-nvim'),
+        src = 'https://github.com/nvimdev/dashboard-nvim',
     },
     {
-        src = gh('nvim-tree/nvim-web-devicons'),
+        src = 'https://github.com/nvim-tree/nvim-web-devicons',
     },
-})
+}
 
-local dash = require('dashboard').setup({
+local dash = require('dashboard').setup {
     theme = 'hyper',
     config = {
         week_header = {
             enable = true, --boolean use a week header
         },
-        disable_move = true,
     }, -- config used for theme
-})
+}

@@ -1,8 +1,8 @@
 -- Seutp fzf-lua
 vim.pack.add({
-    { src = gh('ibhagwan/fzf-lua'), name = 'fzf-lua' },
+    { src = 'https://github.com/ibhagwan/fzf-lua' },
     {
-        src = gh('echasnovski/mini.icons'),
+        src = 'https://github.com/echasnovski/mini.icons',
     },
 })
 
@@ -38,58 +38,58 @@ local blink = require('fzf-lua').setup({
 -- })
 
 -- Map keybinding to fzf
-map('n', '<leader>ff', function()
+vim.keymap.set('n', '<leader>ff', function()
     require('fzf-lua').files()
 end, { desc = 'files in project directory' })
 
-map('n', '<leader>fg', function()
+vim.keymap.set('n', '<leader>fg', function()
     require('fzf-lua').live_grep()
 end, { desc = 'grep files in project directory' })
 
-map('n', '<leader>fc', function()
+vim.keymap.set('n', '<leader>fc', function()
     require('fzf-lua').files({ cwd = vim.fn.stdpath('config') })
 end, { desc = 'find configuration' })
 
-map('n', '<leader>fh', function()
+vim.keymap.set('n', '<leader>fh', function()
     require('fzf-lua').helptags()
 end, { desc = 'search for help' })
 
-map('n', '<leader>fk', function()
+vim.keymap.set('n', '<leader>fk', function()
     require('fzf-lua').keymaps()
 end, { desc = 'search keymaps' })
 
-map('n', '<leader>fb', function()
+vim.keymap.set('n', '<leader>fb', function()
     require('fzf-lua').builtin()
 end, { desc = 'search builtin fzf' })
 
-map('n', '<leader>fw', function()
+vim.keymap.set('n', '<leader>fw', function()
     require('fzf-lua').grep_cword()
 end, { desc = 'find current word' })
 
-map('n', '<leader>fW', function()
+vim.keymap.set('n', '<leader>fW', function()
     require('fzf-lua').grep_cWORD()
 end, { desc = 'find current WORD' })
 
-map('n', '<leader>fd', function()
+vim.keymap.set('n', '<leader>fd', function()
     require('fzf-lua').diagnostics_document()
 end, {
     desc = 'find diagnostics',
 })
 
-map('n', '<leader>fr', function()
+vim.keymap.set('n', '<leader>fr', function()
     require('fzf-lua').resume()
 end, {
     desc = 'find resume',
 })
 
-map('n', '<leader>fo', function()
+vim.keymap.set('n', '<leader>fo', function()
     require('fzf-lua').oldfiles()
 end, { desc = 'find old files' })
 
-map('n', '<leader><leader>', function()
+vim.keymap.set('n', '<leader><leader>', function()
     require('fzf-lua').buffers()
 end, { desc = 'find existing buffers' })
 
-map('n', '<leader>/', function()
+vim.keymap.set('n', '<leader>/', function()
     require('fzf-lua').lgrep_curbuf()
 end, { desc = 'live grep buffer' })

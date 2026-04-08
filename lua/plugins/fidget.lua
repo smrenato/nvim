@@ -1,7 +1,9 @@
 -- notifications for lsp and other stuffs
 
 vim.pack.add({
-    { src = gh('j-hui/fidget.nvim') },
+    {
+        src = 'https://github.com/j-hui/fidget.nvim'
+    },
 })
 
 local fidget = require('fidget').setup({

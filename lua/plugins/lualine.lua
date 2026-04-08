@@ -1,12 +1,10 @@
 -- Lua line
 vim.pack.add({
     {
-        src = gh('nvim-lualine/lualine.nvim'),
-        name = 'lualine',
+        src = 'https://github.com/nvim-lualine/lualine.nvim',
     },
     {
-        src = gh('nvim-tree/nvim-web-devicons'),
-        name = 'devicons',
+        src = 'https://github.com/nvim-tree/nvim-web-devicons',
     },
 })
 

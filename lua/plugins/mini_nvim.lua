@@ -1,9 +1,9 @@
 vim.pack.add({
-    { src = gh('nvim-mini/mini.ai') },
-    { src = gh('nvim-mini/mini.pairs') },
-    { src = gh('nvim-mini/mini.surround') },
-    -- { src = gh('nvim-mini/mini.cmdline') },
-    -- { src = gh('nvim-mini/mini.notify') },
+    { src = 'https://github.com/nvim-mini/mini.ai' },
+    { src = 'https://github.com/nvim-mini/mini.pairs' },
+    { src = 'https://github.com/nvim-mini/mini.surround' },
+    -- { src = 'https://github.com/nvim-mini/mini.cmdline' },
+    -- { src = 'https://github.com/nvim-mini/mini.notify' },
 })
 
 local mini_pairs = require('mini.pairs').setup()

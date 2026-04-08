@@ -1,8 +1,7 @@
 -- Tiny and nicer inline diagnostics
 vim.pack.add({
     {
-        src = gh('rachartier/tiny-inline-diagnostic.nvim'),
-        name = 'tiny-diagnostics',
+        src = 'https://github.com/rachartier/tiny-inline-diagnostic.nvim'
     },
 })
 
