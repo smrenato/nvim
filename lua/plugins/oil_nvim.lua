@@ -28,11 +28,3 @@ local oil = require('oil').setup({
         border = 'rounded',
     },
 })
--- disable line numbers for oil.nvim buffers
-vim.api.nvim_create_autocmd('FileType', {
-    pattern = 'oil',
-    callback = function()
-        vim.wo.number = false
-        vim.wo.relativenumber = false
-    end,
-})
