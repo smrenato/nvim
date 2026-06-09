@@ -1,10 +1,5 @@
 -- Quality of life settings
 -- ++++++++++++++++++++++++++++++++++++++++++
-
--- very magic mode on pattern matching
---vim.cmd [[nnoremap / /\v]]
-
--- Use an indentation of 4 spaces.
 vim.o.expandtab = true
 vim.o.shiftwidth = 4
 vim.o.tabstop = 4
@@ -16,7 +11,7 @@ vim.opt.spelllang = { 'en' }
 
 -- Show white space.
 vim.opt.list = true
--- vim.opt.listchars = { space = '⋅', trail = '⋅', tab = '  ↦' }
+vim.opt.listchars = { space = '⋅', trail = '⋅' }
 
 -- Show line numbers.
 vim.wo.number = true
@@ -111,14 +106,11 @@ vim.o.confirm = true
 
 -- UI2 config
 
--- Enable the new experimental command-line features.
 require('vim._core.ui2').enable {}
 
--- ++++++++++++++++++++++++++++++++++++++++++
 -- Keymaps
 -- ++++++++++++++++++++++++++++++++++++++++++
 
--- Open Oil explorer on wd
 vim.keymap.set('n', '<leader>e', '<CMD>Oil<CR>', { desc = 'Open parent directory' })
 
 -- Remap for dealing with word wrap and adding jumps to the jumplist.
@@ -177,7 +169,12 @@ vim.keymap.set({ 'i', 'c' }, '<C-l>', '<C-o>A', { desc = 'Go to the end of the l
 -- Mark management.
 vim.keymap.set('c', 'dm', 'delmarks', { desc = 'Delete marks' })
 
--- ++++++++++++++++++++++++++++++++++++++++++++++
+-- Resize window using <ctrl> arrow keys
+vim.keymap.set('n', '<C-Up>', '<cmd>resize +2<cr>', { desc = 'Increase Window Height' })
+vim.keymap.set('n', '<C-Down>', '<cmd>resize -2<cr>', { desc = 'Decrease Window Height' })
+vim.keymap.set('n', '<C-Left>', '<cmd>vertical resize -2<cr>', { desc = 'Decrease Window Width' })
+vim.keymap.set('n', '<C-Right>', '<cmd>vertical resize +2<cr>', { desc = 'Increase Window Width' })
+
 -- Nice auto commands to have
 -- ++++++++++++++++++++++++++++++++++++++++++++++
 
@@ -191,7 +188,9 @@ vim.api.nvim_create_autocmd('FileType', {
         'qf',
         'scratch',
         'oil',
+        'qf',
     },
+
     callback = function(args)
         if args.match ~= 'help' or not vim.bo[args.buf].modifiable then
             vim.keymap.set('n', 'q', '<cmd>quit<cr>', { buffer = args.buf })
