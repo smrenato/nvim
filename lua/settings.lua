@@ -104,14 +104,25 @@ vim.o.splitbelow = true
 -- Buffer confirm
 vim.o.confirm = true
 
--- UI2 config
-
-require('vim._core.ui2').enable {}
+-- UI2 config if 0.12.0
+if vim.version.range('0.12.0 - 1.0.0'):has(vim.version()) then
+    require('vim._core.ui2').enable {}
+end
 
 -- Keymaps
 -- ++++++++++++++++++++++++++++++++++++++++++
 
 vim.keymap.set('n', '<leader>e', '<CMD>Oil<CR>', { desc = 'Open parent directory' })
+
+-- Move to end and start of line
+vim.keymap.set({ 'n', 'v', 'x', 'o' }, 'gh', '^', { desc = 'Go to first characters of line' })
+vim.keymap.set({ 'n', 'v', 'x', 'o' }, 'gl', '$', { desc = 'Go to end of line' })
+
+-- trim?
+vim.keymap.set({ 'n', 'o' }, '<C-_>', function()
+    vim.fn.getline('.'):gsub('^%s+', ''):gsub('%s+$', '')
+    vim.cmd 'normal! ^vg_'
+end, { noremap = true, silent = true })
 
 -- Remap for dealing with word wrap and adding jumps to the jumplist.
 vim.keymap.set('n', 'j', [[(v:count > 1 ? 'm`' . v:count : 'g') . 'j']], { expr = true })
