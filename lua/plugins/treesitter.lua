@@ -1,5 +1,4 @@
 -- Treesitter and textobjects
-
 vim.pack.add({
     {
         src = gh('nvim-treesitter/nvim-treesitter'),
@@ -97,34 +96,34 @@ local textobjects = require('nvim-treesitter-textobjects').setup({
 })
 
 -- Surroundings
-map({ 'x', 'o' }, 'af', function()
+vim.keymap.set({ 'x', 'o' }, 'af', function()
     require('nvim-treesitter-textobjects.select').select_textobject(
         '@function.outer',
         'textobjects'
     )
 end, {})
 
-map({ 'x', 'o' }, 'if', function()
+vim.keymap.set({ 'x', 'o' }, 'if', function()
     require('nvim-treesitter-textobjects.select').select_textobject(
         '@function.inner',
         'textobjects'
     )
 end, {})
 
-map({ 'x', 'o' }, 'ac', function()
+vim.keymap.set({ 'x', 'o' }, 'ac', function()
     require('nvim-treesitter-textobjects.select').select_textobject(
         '@class.outer',
         'textobjects'
     )
 end, {})
-map({ 'x', 'o' }, 'ic', function()
+vim.keymap.set({ 'x', 'o' }, 'ic', function()
     require('nvim-treesitter-textobjects.select').select_textobject(
         '@class.inner',
         'textobjects'
     )
 end, {})
 
-map({ 'x', 'o' }, 'as', function()
+vim.keymap.set({ 'x', 'o' }, 'as', function()
     require('nvim-treesitter-textobjects.select').select_textobject(
         '@local.scope',
         'locals'
@@ -132,11 +131,11 @@ map({ 'x', 'o' }, 'as', function()
 end, {})
 
 -- Swaps
-map('n', '<leader>a', function()
+vim.keymap.set('n', '<leader>a', function()
     require('nvim-treesitter-textobjects.swap').swap_next('@parameter.inner')
 end, { desc = 'code swap inner' })
 
-map('n', '<leader>A', function()
+vim.keymap.set('n', '<leader>A', function()
     require('nvim-treesitter-textobjects.swap').swap_previous(
         '@parameter.outer'
     )
@@ -145,74 +144,74 @@ end, { desc = 'code swap outer' })
 -- Moves
 
 -- functions
-map({ 'n', 'x', 'o' }, ']f', function()
+vim.keymap.set({ 'n', 'x', 'o' }, ']f', function()
     require('nvim-treesitter-textobjects.move').goto_next_start(
         '@function.outer',
         'textobjects'
     )
 end, {})
 
-map({ 'n', 'x', 'o' }, ']]', function()
+vim.keymap.set({ 'n', 'x', 'o' }, ']]', function()
     require('nvim-treesitter-textobjects.move').goto_next_start(
         '@class.outer',
         'textobjects'
     )
 end, {})
 
-map({ 'n', 'x', 'o' }, ']o', function()
+vim.keymap.set({ 'n', 'x', 'o' }, ']o', function()
     move.goto_next_start({ '@loop.inner', '@loop.outer' }, 'textobjects')
 end, {})
 
-map({ 'n', 'x', 'o' }, ']s', function()
+vim.keymap.set({ 'n', 'x', 'o' }, ']s', function()
     require('nvim-treesitter-textobjects.move').goto_next_start(
         '@local.scope',
         'locals'
     )
 end, {})
 
-map({ 'n', 'x', 'o' }, ']z', function()
+vim.keymap.set({ 'n', 'x', 'o' }, ']z', function()
     require('nvim-treesitter-textobjects.move').goto_next_start(
         '@fold',
         'folds'
     )
 end, {})
 
-map({ 'n', 'x', 'o' }, ']F', function()
+vim.keymap.set({ 'n', 'x', 'o' }, ']F', function()
     require('nvim-treesitter-textobjects.move').goto_next_end(
         '@function.outer',
         'textobjects'
     )
 end, {})
 
-map({ 'n', 'x', 'o' }, '][', function()
+vim.keymap.set({ 'n', 'x', 'o' }, '][', function()
     require('nvim-treesitter-textobjects.move').goto_next_end(
         '@class.outer',
         'textobjects'
     )
 end, {})
 
-map({ 'n', 'x', 'o' }, '[f', function()
+vim.keymap.set({ 'n', 'x', 'o' }, '[f', function()
     require('nvim-treesitter-textobjects.move').goto_previous_start(
         '@function.outer',
         'textobjects'
     )
 end, {})
 
-map({ 'n', 'x', 'o' }, '[[', function()
+vim.keymap.set({ 'n', 'x', 'o' }, '[[', function()
     require('nvim-treesitter-textobjects.move').goto_previous_start(
         '@class.outer',
         'textobjects'
     )
 end, {})
 
-map({ 'n', 'x', 'o' }, '[F', function()
+vim.keymap.set({ 'n', 'x', 'o' }, '[F', function()
     require('nvim-treesitter-textobjects.move').goto_previous_end(
         '@function.outer',
         'textobjects'
     )
 end, {})
 
-map({ 'n', 'x', 'o' }, '[]', function()
+vim.keymap.set({ 'n', 'x', 'o' }, '[]', function()
     require('nvim-treesitter-textobjects.move').goto_previous_end(
         '@class.outer',
         'textobjects'
@@ -220,14 +219,14 @@ map({ 'n', 'x', 'o' }, '[]', function()
 end, {})
 
 -- Go to either the start or the end, whichever is closer.
-map({ 'n', 'x', 'o' }, ']d', function()
+vim.keymap.set({ 'n', 'x', 'o' }, ']d', function()
     require('nvim-treesitter-textobjects.move').goto_next(
         '@conditional.outer',
         'textobjects'
     )
 end, {})
 
-map({ 'n', 'x', 'o' }, '[d', function()
+vim.keymap.set({ 'n', 'x', 'o' }, '[d', function()
     require('nvim-treesitter-textobjects.move').goto_previous(
         '@conditional.outer',
         'textobjects'
@@ -237,21 +236,21 @@ end, {})
 -- Repeatable moves
 local ts_repeat_move = require('nvim-treesitter-textobjects.repeatable_move')
 
-map({ 'n', 'x', 'o' }, ';', ts_repeat_move.repeat_last_move_next)
-map({ 'n', 'x', 'o' }, ',', ts_repeat_move.repeat_last_move_previous)
+vim.keymap.set({ 'n', 'x', 'o' }, ';', ts_repeat_move.repeat_last_move_next)
+vim.keymap.set({ 'n', 'x', 'o' }, ',', ts_repeat_move.repeat_last_move_previous)
 
 -- vim way: ; goes to the direction you were moving.
 -- map({ "n", "x", "o" }, ";", ts_repeat_move.repeat_last_move)
 -- map({ "n", "x", "o" }, ",", ts_repeat_move.repeat_last_move_opposite)
-map({ 'n', 'x', 'o' }, 'f', ts_repeat_move.builtin_f_expr, { expr = true })
-map({ 'n', 'x', 'o' }, 'F', ts_repeat_move.builtin_F_expr, { expr = true })
-map({ 'n', 'x', 'o' }, 't', ts_repeat_move.builtin_t_expr, { expr = true })
-map({ 'n', 'x', 'o' }, 'T', ts_repeat_move.builtin_T_expr, { expr = true })
+vim.keymap.set({ 'n', 'x', 'o' }, 'f', ts_repeat_move.builtin_f_expr, { expr = true })
+vim.keymap.set({ 'n', 'x', 'o' }, 'F', ts_repeat_move.builtin_F_expr, { expr = true })
+vim.keymap.set({ 'n', 'x', 'o' }, 't', ts_repeat_move.builtin_t_expr, { expr = true })
+vim.keymap.set({ 'n', 'x', 'o' }, 'T', ts_repeat_move.builtin_T_expr, { expr = true })
 
-map({ 'n', 'x', 'o' }, '<home>', function()
+vim.keymap.set({ 'n', 'x', 'o' }, '<home>', function()
     ts_repeat_move.repeat_last_move({ forward = false, start = true })
 end, {})
 
-map({ 'n', 'x', 'o' }, '<end>', function()
+vim.keymap.set({ 'n', 'x', 'o' }, '<end>', function()
     ts_repeat_move.repeat_last_move({ forward = true, start = false })
 end, {})
