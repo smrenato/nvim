@@ -1,11 +1,11 @@
-vim.pack.add({
-    { src = 'https://github.com/folke/which-key.nvim'},
-})
+vim.pack.add {
+    { src = 'https://github.com/folke/which-key.nvim' },
+}
 
-local wk = require('which-key')
+local wk = require 'which-key'
 
 -- setup plugin
-wk.setup({
+wk.setup {
     preset = 'helix',
     show_help = false,
     win = {
@@ -19,10 +19,10 @@ wk.setup({
         -- Mini surround trigger
         { 's', mode = { 'n', 'v' } },
     },
-})
+}
 
 --
-wk.add({
+wk.add {
     -- oil nvim
     {
         mode = { 'n', 'x' },
@@ -69,10 +69,10 @@ wk.add({
             end,
         },
     },
-})
+}
 
 -- Useful keybindings
-wk.add({
+wk.add {
 
     -- Code group
     {
@@ -104,16 +104,16 @@ wk.add({
         mode = 'n',
         '<leader>cf',
         function()
-            require('conform').format({
+            require('conform').format {
                 lsp_format = 'fallback',
-            })
+            }
         end,
         desc = 'format current file',
         -- code format
     },
-})
+}
 
-wk.add({
+wk.add {
     -- Buffer
     {
         mode = 'n',
@@ -134,4 +134,4 @@ wk.add({
         desc = 'prev buffer',
     },
     { mode = 'n', ']b', '<cmd>bnext<cr>', desc = 'next buffer' },
-})
+}

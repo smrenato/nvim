@@ -1,21 +1,21 @@
 -- Oil file explorer
-vim.pack.add({
+vim.pack.add {
     {
         src = 'https://github.com/stevearc/oil.nvim',
     },
     {
         src = 'https://github.com/nvim-tree/nvim-web-devicons',
     },
-})
+}
 
-local oil = require('oil').setup({
+local oil = require('oil').setup {
 
     default_file_explorer = true,
     skip_confirm_for_simple_edits = false,
     columns = {
         'icon',
         -- 'permissions',
-        -- 'size',
+        'size',
         -- "mtime",
     },
 
@@ -27,4 +27,4 @@ local oil = require('oil').setup({
         max_height = 0.80,
         border = 'rounded',
     },
-})
+}
