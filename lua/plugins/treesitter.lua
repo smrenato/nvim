@@ -127,7 +127,7 @@ vim.keymap.set({ 'n', 'x', 'o' }, ']]', function()
 end, {})
 
 vim.keymap.set({ 'n', 'x', 'o' }, ']o', function()
-    move.goto_next_start({ '@loop.inner', '@loop.outer' }, 'textobjects')
+    require('nvim-treesitter-textobjects.move').goto_next_start({ '@loop.inner', '@loop.outer' }, 'textobjects')
 end, {})
 
 vim.keymap.set({ 'n', 'x', 'o' }, ']s', function()
@@ -181,10 +181,6 @@ vim.keymap.set({ 'n', 'x', 'o' }, 'F', ts_repeat_move.builtin_F_expr, { expr = t
 vim.keymap.set({ 'n', 'x', 'o' }, 't', ts_repeat_move.builtin_t_expr, { expr = true })
 vim.keymap.set({ 'n', 'x', 'o' }, 'T', ts_repeat_move.builtin_T_expr, { expr = true })
 
-vim.keymap.set({ 'n', 'x', 'o' }, '<home>', function()
-    ts_repeat_move.repeat_last_move { forward = false, start = true }
-end, {})
-
-vim.keymap.set({ 'n', 'x', 'o' }, '<end>', function()
-    ts_repeat_move.repeat_last_move { forward = true, start = false }
+vim.keymap.set({ 'n', 'x', 'o' }, '<A-.>', function()
+    ts_repeat_move.repeat_last_move()
 end, {})

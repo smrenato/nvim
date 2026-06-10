@@ -122,7 +122,7 @@ vim.keymap.set({ 'n' }, 'ga', vim.lsp.buf.code_action, { desc = 'lsp code action
 vim.keymap.set({ 'n', 'v', 'x', 'o' }, 'gh', '^', { desc = 'Go to first characters of line' })
 vim.keymap.set({ 'n', 'v', 'x', 'o' }, 'gl', '$', { desc = 'Go to end of line' })
 
--- trim?
+-- trim? 'ctrl-_' to yank and trim a line, copied from helix
 vim.keymap.set({ 'n', 'o' }, '<c-_>', '<CMD>normal! ^vg_y<CR>', { noremap = true, silent = true })
 
 -- Remap for dealing with word wrap and adding jumps to the jumplist.
@@ -166,7 +166,10 @@ vim.keymap.set({ 'i', 's', 'n' }, '<esc>', function()
 end, { desc = 'Escape, clear hlsearch, and stop snippet session', expr = true })
 
 -- Make U opposite to u.
-vim.keymap.set('n', 'U', '<C-r>', { desc = 'Redo' })
+vim.keymap.set('n', 'U', '<CMD>redo<CR>', { desc = 'Redo' })
+
+-- unmap
+vim.keymap.set({ 'n', 'v' }, '<c-r>', function() end, { desc = 'do nothing' })
 
 -- Escape and save changes.
 vim.keymap.set({ 's', 'i', 'n', 'v' }, '<C-s>', '<esc>:w<cr>', { desc = 'Exit insert mode and save changes' })
