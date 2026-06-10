@@ -5,6 +5,9 @@ vim.o.shiftwidth = 4
 vim.o.tabstop = 4
 vim.o.softtabstop = 4
 
+-- hide mode
+vim.o.showmode = false
+
 -- spelling checker
 vim.o.spell = true
 vim.opt.spelllang = { 'en' }
@@ -120,9 +123,7 @@ vim.keymap.set({ 'n', 'v', 'x', 'o' }, 'gh', '^', { desc = 'Go to first characte
 vim.keymap.set({ 'n', 'v', 'x', 'o' }, 'gl', '$', { desc = 'Go to end of line' })
 
 -- trim?
-vim.keymap.set({ 'n', 'o' }, '<C-_>', function()
-    vim.cmd 'normal! ^vg_y'
-end, { noremap = true, silent = true })
+vim.keymap.set({ 'n', 'o' }, '<c-_>', '<CMD>normal! ^vg_y<CR>', { noremap = true, silent = true })
 
 -- Remap for dealing with word wrap and adding jumps to the jumplist.
 vim.keymap.set('n', 'j', [[(v:count > 1 ? 'm`' . v:count : 'g') . 'j']], { expr = true })

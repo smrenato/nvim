@@ -7,6 +7,7 @@ local wk = require 'which-key'
 -- setup plugin
 wk.setup {
     preset = 'helix',
+    icons = { mappings = false },
     show_help = false,
     win = {
         height = {
@@ -39,14 +40,19 @@ wk.add {
     -- defining groups
     {
         mode = { 'n', 'x' },
-        { '<leader><tab>', group = 'tabs' },
+        { '<leader>t', group = 'tabs' },
         { '<leader>c', group = 'code' },
         { '<leader>d', group = 'debug' },
-        { '<leader>f', group = 'file/find' },
+        { '<leader>f', group = 'find' },
         { '<leader>g', group = 'git' },
         { '<leader>gh', group = 'hunks' },
-        { '<leader>q', group = 'quit/session' },
+        { '<leader>q', group = 'quit' },
         { '<leader>s', group = 'search' },
+        {
+            '<leader>h',
+            group = 'home',
+            icon = { icon = '', color = 'red' },
+        },
         { '<leader>x', group = 'diagnostics/quickfix' },
         { '[', group = 'prev' },
         { ']', group = 'next' },

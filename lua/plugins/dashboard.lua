@@ -65,4 +65,4 @@ local dash = require('dashboard').setup {
     },
 }
 
-vim.keymap.set('n', '<leader>i', '<CMD>Dashboard<CR>', { desc = 'dashboard' })
+vim.keymap.set('n', '<leader>h', '<CMD>Dashboard<CR>', { desc = 'dashboard' })
