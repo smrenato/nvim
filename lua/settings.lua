@@ -107,7 +107,13 @@ vim.o.confirm = true
 -- Keymaps
 -- ++++++++++++++++++++++++++++++++++++++++++
 
+-- Oil
 vim.keymap.set('n', '<leader>e', '<CMD>Oil<CR>', { desc = 'open parent directory' })
+
+-- Lsp
+vim.keymap.set({ 'n' }, 'gd', vim.lsp.buf.declaration, { desc = 'lsp go to declaration' })
+vim.keymap.set({ 'n' }, 'gD', vim.lsp.buf.definition, { desc = 'lsp go to definition' })
+vim.keymap.set({ 'n' }, 'ga', vim.lsp.buf.code_action, { desc = 'lsp code action' })
 
 -- Move to end and start of line
 vim.keymap.set({ 'n', 'v', 'x', 'o' }, 'gh', '^', { desc = 'Go to first characters of line' })
