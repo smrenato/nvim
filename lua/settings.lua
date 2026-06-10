@@ -121,8 +121,7 @@ vim.keymap.set({ 'n', 'v', 'x', 'o' }, 'gl', '$', { desc = 'Go to end of line' }
 
 -- trim?
 vim.keymap.set({ 'n', 'o' }, '<C-_>', function()
-    vim.fn.getline('.'):gsub('^%s+', ''):gsub('%s+$', '')
-    vim.cmd 'normal! ^vg_'
+    vim.cmd 'normal! ^vg_y'
 end, { noremap = true, silent = true })
 
 -- Remap for dealing with word wrap and adding jumps to the jumplist.
