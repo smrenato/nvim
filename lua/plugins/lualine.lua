@@ -8,4 +8,8 @@ vim.pack.add {
     },
 }
 
-local lualine = require('lualine').setup {}
+local lualine = require('lualine').setup {
+    sections = {
+        lualine_x = { 'lsp_status', 'encoding', 'fileformat', 'filetype' },
+    },
+}
