@@ -6,6 +6,14 @@ vim.g.maplocalleader = ' '
 vim.cmd.colorscheme 'catppuccin'
 vim.cmd.packadd 'nvim.undotree'
 
+-- UI2 config if 0.12.0
+if vim.version.range('0.12.0 - 1.0.0'):has(vim.version()) then
+    require('vim._core.ui2').enable {}
+else
+    print 'This config is intent to be used on neovim 0.12+'
+    return
+end
+
 -- Load all other configurations
 -- Quality of life
 require 'settings'

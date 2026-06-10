@@ -31,7 +31,7 @@ wk.add {
             function()
                 require('oil').open_float()
             end,
-            desc = 'Oil explorer',
+            desc = 'oil explorer',
             icon = { icon = '󰉋 ', color = 'red' },
         },
     },

@@ -22,21 +22,21 @@ vim.g.fff = {
 }
 
 local fff = require('fff').setup {
-    prompt = '󰈞 ',
+    prompt = ' ❯',
 }
 
 vim.keymap.set('n', '<leader>ff', function()
     require('fff').find_files()
-end, { desc = 'FFFind files' })
+end, { desc = 'find files' })
 
 vim.keymap.set('n', '<leader>fg', function()
     require('fff').live_grep()
-end, { desc = 'LiFFFe grep' })
+end, { desc = 'live grep' })
 
 vim.keymap.set('n', '<leader>fz', function()
     require('fff').live_grep { grep = { modes = { 'fuzzy', 'plain' } } }
-end, { desc = 'Live fffuzy grep' })
+end, { desc = 'live fffuzy grep' })
 
 vim.keymap.set('n', '<leader>fc', function()
     require('fff').live_grep { query = vim.fn.expand '<cword>' }
-end, { desc = 'Search current word' })
+end, { desc = 'search current word' })

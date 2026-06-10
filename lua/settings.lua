@@ -104,15 +104,10 @@ vim.o.splitbelow = true
 -- Buffer confirm
 vim.o.confirm = true
 
--- UI2 config if 0.12.0
-if vim.version.range('0.12.0 - 1.0.0'):has(vim.version()) then
-    require('vim._core.ui2').enable {}
-end
-
 -- Keymaps
 -- ++++++++++++++++++++++++++++++++++++++++++
 
-vim.keymap.set('n', '<leader>e', '<CMD>Oil<CR>', { desc = 'Open parent directory' })
+vim.keymap.set('n', '<leader>e', '<CMD>Oil<CR>', { desc = 'open parent directory' })
 
 -- Move to end and start of line
 vim.keymap.set({ 'n', 'v', 'x', 'o' }, 'gh', '^', { desc = 'Go to first characters of line' })
@@ -142,7 +137,7 @@ vim.keymap.set('v', '>', '>gv')
 vim.keymap.set('n', 'gQ', 'mzgggqG`z<cmd>delmarks z<cr>zz', { desc = 'Format buffer' })
 
 -- Restart Neovim.
-vim.keymap.set('n', '<leader>R', '<cmd>restart<cr>', { desc = 'Restart Neovim' })
+vim.keymap.set('n', '<leader>R', '<cmd>restart<cr>', { desc = 'restart nvim' })
 
 -- Switch between windows.
 vim.keymap.set('n', '<C-h>', '<C-w>h', { desc = 'Move to the left window', remap = true })
@@ -155,14 +150,14 @@ vim.keymap.set('n', '<leader>tc', '<cmd>tabclose<cr>', { desc = 'Close tab page'
 vim.keymap.set('n', '<leader>tn', '<cmd>tab split<cr>', { desc = 'New tab page' })
 vim.keymap.set('n', '<leader>to', '<cmd>tabonly<cr>', { desc = 'Close other tab pages' })
 
--- -- Poweful <esc>.
--- vim.keymap.set({ 'i', 's', 'n' }, '<esc>', function()
---     if require('luasnip').expand_or_jumpable() then
---         require('luasnip').unlink_current()
---     end
---     vim.cmd 'noh'
---     return '<esc>'
--- end, { desc = 'Escape, clear hlsearch, and stop snippet session', expr = true })
+-- Poweful <esc>.
+vim.keymap.set({ 'i', 's', 'n' }, '<esc>', function()
+    -- if require('luasnip').expand_or_jumpable() then
+    --     require('luasnip').unlink_current()
+    -- end
+    vim.cmd 'noh'
+    return '<esc>'
+end, { desc = 'Escape, clear hlsearch, and stop snippet session', expr = true })
 
 -- Make U opposite to u.
 vim.keymap.set('n', 'U', '<C-r>', { desc = 'Redo' })
