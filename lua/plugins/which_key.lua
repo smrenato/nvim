@@ -2,10 +2,9 @@ vim.pack.add {
     { src = 'https://github.com/folke/which-key.nvim' },
 }
 
-local wk = require 'which-key'
+local which_key = require 'which-key'
 
--- setup plugin
-wk.setup {
+which_key.setup {
     preset = 'helix',
     icons = { mappings = false },
     show_help = false,
@@ -17,14 +16,11 @@ wk.setup {
 
     triggers = {
         { '<auto>', mode = 'nxso' },
-        -- Mini surround trigger
         { 's', mode = { 'n', 'v' } },
     },
 }
 
---
-wk.add {
-    -- oil nvim
+which_key.add {
     {
         mode = { 'n', 'x' },
         {
@@ -33,13 +29,14 @@ wk.add {
                 require('oil').open_float()
             end,
             desc = 'oil explorer',
-            icon = { icon = '󰉋 ', color = 'red' },
         },
     },
 
     -- defining groups
     {
         mode = { 'n', 'x' },
+
+        { '<leader>', group = 'leader' },
         { '<leader>t', group = 'tabs' },
         { '<leader>c', group = 'code' },
         { '<leader>d', group = 'debug' },
@@ -51,12 +48,12 @@ wk.add {
         {
             '<leader>h',
             group = 'home',
-            icon = { icon = '', color = 'red' },
         },
         { '<leader>x', group = 'diagnostics/quickfix' },
         { '[', group = 'prev' },
         { ']', group = 'next' },
         { 'g', group = 'goto' },
+        { 'gr', group = 'lsp' },
         { 's', group = 'surround' },
         { 'z', group = 'fold' },
         {
@@ -78,8 +75,7 @@ wk.add {
 }
 
 -- Useful keybindings
-wk.add {
-
+which_key.add {
     -- Code group
     {
         mode = 'n',
@@ -119,7 +115,7 @@ wk.add {
     },
 }
 
-wk.add {
+which_key.add {
     -- Buffer
     {
         mode = 'n',
@@ -140,4 +136,16 @@ wk.add {
         desc = 'prev buffer',
     },
     { mode = 'n', ']b', '<cmd>bnext<cr>', desc = 'next buffer' },
+}
+
+which_key.add {
+    {
+        mode = { 'n' },
+        { 'gra', desc = 'lsp code action' },
+        { 'gri', desc = 'lsp go to implementation' },
+        { 'grn', desc = 'lsp rename' },
+        { 'grr', desc = 'lsp find references' },
+        { 'grt', desc = 'lsp type definitions' },
+        { 'grx', desc = 'lsp code lens' },
+    },
 }
