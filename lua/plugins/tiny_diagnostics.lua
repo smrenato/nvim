@@ -6,11 +6,25 @@ vim.pack.add {
 }
 
 local tiny = require('tiny-inline-diagnostic').setup {
-    diagnostics = { virtual_text = false },
-
-    -- Choose a preset style for diagnostic appearance
-    -- Available: "modern", "classic", "minimal", "powerline", "ghost", "simple", "nonerdfont", "amongus"
     preset = 'ghost',
-    -- Make diagnostic background transparent
-    transparent_bg = true,
+    transparent_bg = false,
+
+    options = {
+        underline = false,
+        override_open_float = false,
+        set_arrow_to_diag_color = true,
+    },
+
+    signs = {
+        left = '',
+        right = '',
+        diag = '●',
+        arrow = '    ',
+        up_arrow = '    ',
+        vertical = ' │',
+        vertical_end = ' └',
+    },
+    blend = {
+        factor = 0.22,
+    },
 }
