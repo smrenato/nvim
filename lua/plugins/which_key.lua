@@ -41,7 +41,7 @@ which_key.add {
         { '<leader>', group = 'leader' },
         { '<leader>t', group = 'tabs' },
         { '<leader>c', group = 'code' },
-        { '<leader>d', group = 'debug' },
+        { '<leader>d', group = 'diagnostics' },
         { '<leader>f', group = 'find' },
         { '<leader>g', group = 'git' },
         { '<leader>gh', group = 'hunks' },
