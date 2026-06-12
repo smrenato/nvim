@@ -117,10 +117,10 @@ map({ 'x', 'o' }, 'as', function()
 end, { desc = 'around scope' })
 
 -- Swaps
-map('n', '<leader>a', function()
+map('n', '<leader>ca', function()
     require('nvim-treesitter-textobjects.swap').swap_next '@parameter.inner'
 end, { desc = 'parameter swap inner' })
-map('n', '<leader>A', function()
+map('n', '<leader>cA', function()
     require('nvim-treesitter-textobjects.swap').swap_previous '@parameter.outer'
 end, { desc = 'parameter swap outer' })
 

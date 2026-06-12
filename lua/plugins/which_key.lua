@@ -7,6 +7,8 @@ local which_key = require 'which-key'
 which_key.setup {
     preset = 'helix',
     icons = { mappings = false },
+
+    sort = { 'local', 'case', 'order', 'group', 'alphanum', 'mod' },
     show_help = false,
     win = {
         height = {

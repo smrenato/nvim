@@ -10,6 +10,7 @@ vim.pack.add {
 
 local dash = require('dashboard').setup {
     theme = 'hyper',
+    shuffle_letter = false,
     config = {
         week_header = {
             enable = true,
