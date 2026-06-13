@@ -28,3 +28,11 @@ local oil = require('oil').setup {
         border = 'rounded',
     },
 }
+
+-- Oil
+-- TODO: add more flexible keybindings
+local map = vim.keymap.set
+
+map('n', '<leader>e', function()
+    require('oil.nvim').open_float()
+end, { desc = 'open parent directory' })

@@ -1,40 +1,35 @@
 -- Quality of life settings
 -- ++++++++++++++++++++++++++++++++++++++++++
 
-vim.o.expandtab = true
-vim.o.shiftwidth = 4
-vim.o.tabstop = 4
-vim.o.softtabstop = 4
-vim.o.showmode = false
-
-vim.o.scrolloff = 10
-vim.o.sidescroll = 10
+local o, opt, wo, g = vim.o, vim.opt, vim.wo, vim.g
 
 -- spelling checker
-vim.o.spell = true
-vim.opt.spelllang = { 'en', 'pt' }
+o.spell = true
+opt.spelllang = { 'en', 'pt' }
 
 -- Show white space.
-vim.opt.list = true
-vim.opt.listchars = { space = '⋅', trail = '⋅' }
+opt.list = true
+opt.listchars = { space = '⋅', trail = '⋅' }
 
 -- Show line numbers.
-vim.wo.number = true
-vim.wo.relativenumber = true
-vim.o.mouse = 'a'
-vim.o.cursorline = true
-vim.o.mousescroll = 'ver:3,hor:0'
+wo.number = true
+wo.relativenumber = true
+o.mouse = 'a'
+o.cursorline = true
+o.mousescroll = 'ver:3,hor:0'
 
 -- Wrap long lines at words.
-vim.o.linebreak = true
+o.linebreak = true
 
 -- Folding.
-vim.o.foldcolumn = '1'
-vim.o.foldlevelstart = 99
-vim.wo.foldtext = ''
+o.foldcolumn = '1'
+o.foldlevelstart = 99
+wo.foldtext = ''
+o.scrolloff = 10
+o.sidescroll = 10
 
 -- UI characters.
-vim.opt.fillchars = {
+opt.fillchars = {
     eob = ' ',
     fold = ' ',
     -- foldclose = '⋅',
@@ -44,54 +39,51 @@ vim.opt.fillchars = {
     msgsep = '─',
 }
 
-vim.o.winborder = 'rounded'
-vim.o.clipboard = 'unnamedplus'
-vim.o.undofile = true
-vim.o.exrc = true
-vim.o.ignorecase = true
-vim.o.smartcase = true
-vim.wo.signcolumn = 'yes'
+o.winborder = 'rounded'
+o.clipboard = 'unnamedplus'
+o.undofile = true
+o.exrc = true
+o.ignorecase = true
+o.smartcase = true
+wo.signcolumn = 'yes'
 
 -- Update times and timeouts.
-vim.o.updatetime = 300
-vim.o.timeoutlen = 500
-vim.o.ttimeoutlen = 10
+o.updatetime = 300
+o.timeoutlen = 500
+o.ttimeoutlen = 10
 
 -- Completion.
-vim.opt.wildignore:append { '.DS_Store' }
-vim.o.completeopt = 'menuone,noselect,noinsert'
-vim.o.pumheight = 15
-vim.o.pumborder = 'rounded'
-vim.opt.diffopt:append 'vertical,context:99'
+opt.wildignore:append { '.DS_Store' }
+o.completeopt = 'menuone,noselect,noinsert'
+o.pumheight = 15
+o.pumborder = 'rounded'
+opt.diffopt:append 'vertical,context:99'
 
-vim.opt.shortmess:append {
+opt.shortmess:append {
     w = true,
     s = true,
 }
 
 -- Status line.
-vim.o.laststatus = 3
-vim.o.cmdheight = 1
+o.laststatus = 3
+o.cmdheight = 1
 
 -- Disable cursor blinking in terminal mode.
-vim.o.guicursor = 'n-v-c-sm:block,i-ci-ve:ver25,r-cr-o:hor20,t:block-TermCursor'
-vim.g.loaded_python3_provider = 0
-vim.g.loaded_ruby_provider = 0
-vim.g.loaded_perl_provider = 0
-vim.g.loaded_node_provider = 0
+o.guicursor = 'n-v-c-sm:block,i-ci-ve:ver25,r-cr-o:hor20,t:block-TermCursor'
+g.loaded_python3_provider = 0
+g.loaded_ruby_provider = 0
+g.loaded_perl_provider = 0
+g.loaded_node_provider = 0
 
 -- Configure how new splits should be opened
-vim.o.splitright = true
-vim.o.splitbelow = true
-vim.o.confirm = true
+o.splitright = true
+o.splitbelow = true
+o.confirm = true
 
 -- Keymaps
 -- ++++++++++++++++++++++++++++++++++++++++++
 
 local map = vim.keymap.set
-
--- Oil
-map('n', '<leader>e', '<CMD>Oil<CR>', { desc = 'open parent directory' })
 
 -- Lsp
 map({ 'n' }, 'gd', vim.lsp.buf.declaration, { desc = 'lsp go to declaration' })
@@ -123,7 +115,7 @@ map('v', '>', '>gv')
 map('n', 'gQ', 'mzgggqG`z<cmd>delmarks z<cr>zz', { desc = 'Format buffer' })
 
 -- Restart Neovim.
-map('n', '<leader>R', '<cmd>restart<cr>', { desc = 'restart nvim' })
+map('n', '<leader>r', '<cmd>restart<cr>', { desc = 'restart nvim' })
 
 -- Switch between windows.
 map('n', '<C-h>', '<C-w>h', { desc = 'Move to the left window', remap = true })
@@ -157,7 +149,7 @@ map({ 's', 'i', 'n', 'v' }, '<C-S-s>', function()
 end, { desc = 'Exit insert mode and save changes (without formatting)', expr = true })
 
 -- Quickly go to the end of the line while in insert mode.
-map({ 'i', 'c' }, '<C-l>', '<C-o>A', { desc = 'Go to the end of the line' })
+-- map({ 'i', 'c' }, '<C-l>', '<C-o>A', { desc = 'Go to the end of the line' })
 
 -- Mark management.
 map('c', 'dm', 'delmarks', { desc = 'Delete marks' })
@@ -235,24 +227,6 @@ autocmd('BufReadPost', {
         local line_count = vim.api.nvim_buf_line_count(args.buf)
         if mark[1] > 0 and mark[1] <= line_count then
             vim.cmd 'normal! g`"zz'
-        end
-    end,
-})
-
-autocmd('FileType', {
-    group = augroup('smrenato/treesitter_folding', { clear = true }),
-    desc = 'Enable Treesitter folding',
-    callback = function(args)
-        local bufnr = args.buf
-
-        -- Enable Treesitter folding when not in huge files and when Treesitter
-        -- is working.
-        if vim.bo[bufnr].filetype ~= 'bigfile' and pcall(vim.treesitter.start, bufnr) then
-            vim.api.nvim_buf_call(bufnr, function()
-                vim.wo[0][0].foldmethod = 'expr'
-                vim.wo[0][0].foldexpr = 'v:lua.vim.treesitter.foldexpr()'
-                vim.cmd.normal 'zx'
-            end)
         end
     end,
 })
