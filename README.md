@@ -1,21 +1,31 @@
-# Simple Nvim configuration for Python and Rust
+```lua
+--[[
+        ███╗   ██╗███████╗ ██████╗ ██╗   ██╗██╗███╗   ███╗
+        ████╗  ██║██╔════╝██╔═══██╗██║   ██║██║████╗ ████║
+        ██╔██╗ ██║█████╗  ██║   ██║██║   ██║██║██╔████╔██║
+        ██║╚██╗██║██╔══╝  ██║   ██║╚██╗ ██╔╝██║██║╚██╔╝██║
+        ██║ ╚████║███████╗╚██████╔╝ ╚████╔╝ ██║██║ ╚═╝ ██║
+        ╚═╝  ╚═══╝╚══════╝ ╚═════╝   ╚═══╝  ╚═╝╚═╝     ╚═╝
+                                                  
+--]]
+```
+## Simple neovim configuration for python and rust
 
-## Prerequisites
+### You should have
 
-- Neovim 0.12+
-- Python 3.*
-- Rust toolchains 
-- ripgrep
-- tree-sitter-cli
-- Nerd font (recommended)
+- [x] Neovim 0.12+
+- [x] Python 3
+- [x] Rust Toolchain 
+- [x] ripgrep (optional)
+- [x] fd-finder (optional)
+- [x] tree-sitter-cli
+- [x] Nerd font (recommended)
 
-## Installation
+## Fork and install
 
-### 1. Backup your current config
+### Backup your current configuration
 
 ```bash
 $ mv ~/.config/nvim ~/.config/nvim.bkp
 $ git clone https://github.com/smrenato/nvim.git ~/.config/nvim 
-
 ```
-
