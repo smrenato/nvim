@@ -149,7 +149,7 @@ map({ 's', 'i', 'n', 'v' }, '<C-S-s>', function()
 end, { desc = 'Exit insert mode and save changes (without formatting)', expr = true })
 
 -- Quickly go to the end of the line while in insert mode.
--- map({ 'i', 'c' }, '<C-l>', '<C-o>A', { desc = 'Go to the end of the line' })
+map({ 'i', 'c' }, '<C-l>', '<C-o>A', { desc = 'Go to the end of the line' })
 
 -- Mark management.
 map('c', 'dm', 'delmarks', { desc = 'Delete marks' })
@@ -176,6 +176,8 @@ autocmd('FileType', {
         'scratch',
         'oil',
         'qf',
+        'query',
+        'vim',
     },
 
     callback = function(args)

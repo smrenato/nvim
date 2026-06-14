@@ -13,3 +13,5 @@ local lualine = require('lualine').setup {
         lualine_x = { 'lsp_status', 'encoding', 'fileformat', 'filetype' },
     },
 }
+
+vim.o.showmode = false
