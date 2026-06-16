@@ -149,5 +149,6 @@ which_key.add {
         { 'grr', desc = 'lsp find references' },
         { 'grt', desc = 'lsp type definitions' },
         { 'grx', desc = 'lsp code lens' },
+        { 'K', desc = 'lsp hover' },
     },
 }

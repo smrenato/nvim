@@ -141,6 +141,8 @@ end, { desc = 'Escape, clear hlsearch, and stop snippet session', expr = true })
 map('n', 'U', '<CMD>redo<CR>', { desc = 'Redo' })
 map({ 'n', 'v' }, '<c-r>', function() end, { desc = 'do nothing' })
 
+map({ 'n', 'v' }, '<leader>u', '<CMD>Undotree<CR>', { desc = 'undo tree' })
+
 -- Escape and save changes.
 map({ 's', 'i', 'n', 'v' }, '<C-s>', '<esc>:w<cr>', { desc = 'Exit insert mode and save changes' })
 map({ 's', 'i', 'n', 'v' }, '<C-S-s>', function()
@@ -178,6 +180,7 @@ autocmd('FileType', {
         'qf',
         'query',
         'vim',
+        'nvim-undotree',
     },
 
     callback = function(args)

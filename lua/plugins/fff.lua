@@ -19,13 +19,14 @@ end, {})
 vim.g.fff = {
     lazy_sync = true,
     -- debug = { enabled = true, show_scores = true },
+    prompt_vim_mode = true,
 }
 
 local fff = require('fff').setup {
     prompt = ' ❯',
 }
 
-vim.keymap.set('n', '<leader>ff', function()
+vim.keymap.set('n', 'ff', function()
     require('fff').find_files()
 end, { desc = 'find files' })
 
@@ -40,3 +41,7 @@ end, { desc = 'live fffuzy grep' })
 vim.keymap.set('n', '<leader>fc', function()
     require('fff').live_grep { query = vim.fn.expand '<cword>' }
 end, { desc = 'search current word' })
+
+vim.keymap.set('n', '<leader>ft', function()
+    require('fff').live_grep { query = 'TODO' }
+end, { desc = 'search todo comment' })
