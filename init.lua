@@ -22,11 +22,11 @@ require 'settings'
 require 'plugins.lualine'
 require 'plugins.dashboard'
 require 'plugins.catppuccin'
-require 'plugins.oil_nvim'
+-- require 'plugins.oil_nvim'
 
 -- require 'plugins.fzf_lua'
 require 'plugins.fff' -- alternative to fzf
-require 'plugins.mini_nvim'
+require 'plugins.mini_nvim' -- mini explorer
 require 'plugins.conform'
 require 'plugins.blink_cmp'
 require 'plugins.treesitter'

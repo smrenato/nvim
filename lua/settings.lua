@@ -18,6 +18,13 @@ o.mouse = 'a'
 o.cursorline = true
 o.mousescroll = 'ver:3,hor:0'
 
+-- tabs??????
+o.expandtab = true -- use spaces?
+o.tabstop = 4 -- number of spaces per tab
+o.softtabstop = 4
+o.shiftwidth = 4
+-- vim.bo.fileformat = 'unix'
+
 -- Wrap long lines at words.
 o.linebreak = true
 

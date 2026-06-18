@@ -27,10 +27,7 @@ which_key.add {
         mode = { 'n', 'x' },
         {
             '<leader>e',
-            function()
-                require('oil').open_float()
-            end,
-            desc = 'oil explorer',
+            desc = 'open explorer',
         },
     },
 

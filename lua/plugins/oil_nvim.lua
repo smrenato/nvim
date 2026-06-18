@@ -35,4 +35,4 @@ local map = vim.keymap.set
 
 map('n', '<leader>e', function()
     require('oil.nvim').open_float()
-end, { desc = 'open parent directory' })
+end, { desc = 'open oil.nvim' })
