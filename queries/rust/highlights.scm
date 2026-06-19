@@ -1,5 +1,10 @@
 ;inherits rust
 ;
 ((line_comment) @comment.warning
-  (#lua-match? @comment.warning "%s+[Ss]afety")
-  (#lua-match? @comment.warning "%s+SAFETY"))
+  (#any-match? @comment.warning "Safety:" "SAFETY:"))
+
+((line_comment) @comment.note
+  (#any-match? @comment.note "Note:" "NOTE:" "Notes:"))
+
+((line_comment) @comment.note
+  (#any-contains? @comment.note "Todo:" "TODO:" "Example:"))
