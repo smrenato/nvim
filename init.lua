@@ -1,5 +1,8 @@
--- font: BlexMono Nerd Font [https://www.programmingfonts.org/#plex-mono]
--- derived from IBM plex
+-- font: BlexMono Nerd Font Mono
+-- [https://www.programmingfonts.org/#plex-mono] derived from IBM plex
+
+-- font: lilex Nerd Font Mono
+-- [https://www.programmingfonts.org/#lilex] IBM plex with ligatures
 
 -- Set leader key to <space>
 vim.g.mapleader = ' '
