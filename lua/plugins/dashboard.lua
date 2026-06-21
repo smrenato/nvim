@@ -16,7 +16,7 @@ local dash = require('dashboard').setup {
             enable = true,
         },
 
-        -- disable_move = true,
+        disable_move = false,
         mru = { limit = 8, label = 'recent files' },
 
         project = {

@@ -1,3 +1,6 @@
+-- font: BlexMono Nerd Font [https://www.programmingfonts.org/#plex-mono]
+-- derived from IBM plex
+
 -- Set leader key to <space>
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
@@ -12,6 +15,39 @@ if vim.version.range('0.12.0 - 1.0.0'):has(vim.version()) then
 else
     print 'This config is intent to be used on neovim 0.12+'
     return
+end
+
+local disabled_builtins = {
+    -- network / file browsing
+    'netrw',
+    'netrwPlugin',
+
+    -- match helpers
+    'matchit',
+    'matchparen',
+
+    -- archive handlers
+    'gzip',
+    'zip',
+    'zipPlugin',
+    'tar',
+    'tarPlugin',
+
+    -- html / tohtml
+    '2html_plugin',
+    'tohtml',
+
+    'compiler',
+    'getscript',
+    'getscriptPlugin',
+    'vimball',
+    'vimballPlugin',
+    'rrhelper',
+}
+
+for _, name in ipairs(disabled_builtins) do
+    local var = 'loaded_' .. name
+    vim.g[var] = 1
 end
 
 -- Load all other configurations
