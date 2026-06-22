@@ -60,8 +60,12 @@ local dash = require('dashboard').setup {
 
         footer = function()
             local nv = ' ' .. tostring(vim.version()):match '%+(.-)$'
-            local me = ' ' .. '@' .. vim.fn.system('git config user.name'):gsub('\n', '')
-            return { '', me, nv }
+            local gu = ' '
+                .. vim.system({ 'git', 'config', '--global', 'user.name' }, { text = true })
+                    :wait().stdout
+                    :gsub('[\r\n]+', '')
+
+            return { '', gu, nv }
         end, -- footer
     },
 }
