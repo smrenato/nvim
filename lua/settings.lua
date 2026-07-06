@@ -76,7 +76,7 @@ o.laststatus = 3
 o.cmdheight = 1
 
 -- Disable cursor blinking in terminal mode.
-o.guicursor = 'n-v-c-sm:block,i-ci-ve:ver25,r-cr-o:hor20,t:block-TermCursor'
+o.guicursor = 'n-v-c-sm:block,i-ci-ve:block,r-cr-o:block,t:block-TermCursor'
 g.loaded_python3_provider = 0
 g.loaded_ruby_provider = 0
 g.loaded_perl_provider = 0
