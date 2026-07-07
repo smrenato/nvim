@@ -1,7 +1,6 @@
 -- Diagnostic configuration.
 vim.diagnostic.config {
     virtual_text = false,
-    -- Disable signs in the gutter.
     signs = false,
 }
 
@@ -11,17 +10,7 @@ local hover = vim.lsp.buf.hover
 vim.lsp.buf.hover = function()
     return hover {
         max_height = math.floor(vim.o.lines * 0.7),
-        max_width = math.floor(vim.o.columns * 0.6),
-    }
-end
-
--- Override the hover
-local hover = vim.lsp.buf.hover
----@diagnostic disable-next-line: duplicate-set-field
-vim.lsp.buf.hover = function()
-    return hover {
-        max_height = math.floor(vim.o.lines * 0.5),
-        max_width = math.floor(vim.o.columns * 0.4),
+        max_width = math.floor(vim.o.columns * 0.8),
     }
 end
 
@@ -44,9 +33,8 @@ vim.api.nvim_create_autocmd({ 'BufReadPre', 'BufNewFile' }, {
     end,
 })
 
--- HACK: Override buf_request to ignore notifications from LSP servers that don't implement a method.
-local buf_request = vim.lsp.buf_request
----@diagnostic disable-next-line: duplicate-set-field
-vim.lsp.buf_request = function(bufnr, method, params, handler)
-    return buf_request(bufnr, method, params, handler, function() end)
-end
+-- local buf_request = vim.lsp.buf_request
+-- ---@diagnostic disable-next-line: duplicate-set-field
+-- vim.lsp.buf_request = function(bufnr, method, params, handler)
+--     return buf_request(bufnr, method, params, handler, function() end)
+-- end
